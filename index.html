@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#07080c" />
-  <meta name="description" content="DARBO — Balkan Overall Juniors Champion — Coaching & Transformations." />
-  <title>DARBO — Coaching</title>
+  <meta name="description" content="Darko Bojovski — Balkan Overall Juniors Champion — Personal Coach." />
+  <title>Darko Bojovski — Coaching</title>
 
   <style>
     :root{
@@ -106,7 +106,7 @@
     }
     .hero-inner{ position:relative; display:flex; gap:14px; align-items:center; }
 
-    /* Logo block */
+    /* Logo block (DARBO OUTLINE ONLY) */
     .logo{
       width:64px; height:64px;
       border-radius: 18px;
@@ -211,7 +211,16 @@
       pointer-events:none;
     }
     .cta strong{ display:block; font-size: 14px; letter-spacing:.25px; }
-    .cta span{ display:block; font-size: 12px; color: var(--muted); margin-top:4px; }
+    .cta span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top:4px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+    }
 
     .right{ display:flex; align-items:center; gap:10px; position:relative; }
     .pill{
@@ -405,6 +414,28 @@
     .reveal.d4{ animation-delay: .26s; }
     @keyframes in{ to{ opacity:1; transform: translateY(0); } }
 
+    /* MOBILE FIXES */
+    @media (max-width: 430px){
+      .hero{ padding:14px; }
+      .hero-inner{ align-items:flex-start; }
+      .name{ font-size:17px; }
+
+      .champ, .tagline{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .champ{ -webkit-line-clamp: 2; }
+      .tagline{ -webkit-line-clamp: 2; }
+
+      .proof{ gap:6px; }
+      .chip{ padding:6px 9px; font-size:11.5px; }
+
+      .cta{ flex-direction: column; align-items:flex-start; }
+      .cta .right{ width:100%; justify-content:space-between; }
+      .pill{ padding:7px 10px; }
+    }
+
     @media (min-width: 680px){
       .cards{ grid-template-columns: 1fr 1fr; }
     }
@@ -420,11 +451,9 @@
   <main class="wrap">
     <section class="hero reveal">
       <div class="hero-inner">
-
-        <!-- DARBO Spartan logo (code-only SVG) -->
+        <!-- DARBO outline-only logo -->
         <div class="logo" aria-label="DARBO logo">
           <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
-            <!-- DARBO wordmark -->
             <text x="48" y="18"
                   text-anchor="middle"
                   font-size="14"
@@ -435,7 +464,6 @@
               DARBO
             </text>
 
-            <!-- Shield -->
             <path d="M48 26
                      C60 26 70 28 78 31
                      V52
@@ -447,50 +475,30 @@
                   stroke="rgba(255,255,255,.92)"
                   stroke-width="4.2"
                   stroke-linejoin="round"/>
-
-            <!-- Spartan helmet silhouette -->
-            <path d="M58 40
-                     C58 34 53 31 48 31
-                     C41 31 36 36 36 43
-                     C36 50 40 55 46 57
-                     C41 58 38 61 36 65
-                     C41 63 47 62 53 63
-                     C58 64 62 67 64 71
-                     C63 60 58 54 53 51
-                     C57 49 58 45 58 40 Z"
-                  fill="rgba(255,255,255,.94)"/>
-
-            <!-- visor cut -->
-            <path d="M49 36
-                     C45 36 42 39 42 43
-                     C42 47 44 50 48 51
-                     C48 46 49 41 52 38
-                     C51 37 50 36 49 36 Z"
-                  fill="rgba(0,0,0,.88)"/>
           </svg>
         </div>
 
         <div class="title">
           <h1 class="name" id="name">DARKO BOJOVSKI</h1>
-          <div class="champ" id="champLine">Balkan Overall Juniors Champion — Bodybuilding</div>
-          <div class="tagline" id="tagline">Personal Coach • Online Coaching • Transformation Systems</div>
+          <div class="champ" id="champLine">Balkan Overall Juniors Champion</div>
+          <div class="tagline" id="tagline">Coaching • Plans • Transformations</div>
 
           <div class="proof">
             <div class="chip gold">Champion</div>
-            <div class="chip">Personal / Online Coaching</div>
-            <div class="chip">Plans • Check-ups • Results</div>
+            <div class="chip">Coaching</div>
+            <div class="chip">Results</div>
           </div>
         </div>
       </div>
     </section>
 
     <div class="grid">
-      <!-- Primary CTA: WhatsApp -->
+      <!-- Primary CTA -->
       <section class="panel reveal d2">
         <a class="cta" id="primaryCta" href="#" target="_blank" rel="noopener">
           <div>
             <strong>Start Coaching (WhatsApp)</strong>
-            <span>Message now. Get the first steps + what I need from you.</span>
+            <span>Message now. I’ll tell you the next step.</span>
           </div>
           <div class="right">
             <span class="pill">Sign up</span>
@@ -514,7 +522,7 @@
           <a class="mini" id="resultsBtn" href="#" target="_blank" rel="noopener">
             <div>
               <b>Results</b>
-              <small>See transformations</small>
+              <small>Transformations</small>
             </div>
             <div aria-hidden="true">→</div>
           </a>
@@ -589,43 +597,42 @@
             <div class="card">
               <div class="t">
                 <b>1:1 Coaching</b>
-                <span class="tag">Best results</span>
+                <span class="tag">Best</span>
               </div>
-              <p>Full guidance, adjustments, accountability. Built for people who want serious change.</p>
+              <p>Full guidance + accountability.</p>
               <div class="bullets">
-                <div>Training plan + progression</div>
-                <div>Diet plan + weekly updates</div>
-                <div>Check-ins + corrections</div>
+                <div>Training plan</div>
+                <div>Diet plan</div>
+                <div>Check-ins</div>
               </div>
             </div>
 
             <div class="card">
               <div class="t">
                 <b>Online Plan</b>
-                <span class="tag">Fast start</span>
+                <span class="tag">Fast</span>
               </div>
-              <p>A clear structure you can follow immediately. Ideal if you want direction without daily coaching.</p>
+              <p>Clear structure you can follow now.</p>
               <div class="bullets">
-                <div>Training plan (goal-based)</div>
-                <div>Diet plan (simple rules)</div>
+                <div>Goal-based training</div>
+                <div>Simple nutrition</div>
                 <div>Follow-up check-ups</div>
               </div>
             </div>
           </div>
 
-          <!-- improved friction-killer + process -->
           <div class="process">
             <div class="step">
               <b>Start in 60 seconds</b>
-              <small>Send: age, height, weight, goal, training days/week, and 1 current photo. I reply with next steps.</small>
+              <small>Send: age, height, weight, goal, days/week, and 1 photo. I reply with next steps.</small>
             </div>
             <div class="step">
               <b>How it works</b>
-              <small>WhatsApp → quick assessment → plan delivered → check-ins + adjustments until results.</small>
+              <small>WhatsApp → assessment → plan → check-ins + adjustments.</small>
             </div>
             <div class="step">
-              <b>Who this is for</b>
-              <small>Beginners who need structure, busy people, and lifters who want a champion-built system.</small>
+              <b>Who it’s for</b>
+              <small>Beginners, busy people, lifters who want structure.</small>
             </div>
           </div>
         </div>
@@ -640,13 +647,13 @@
   <script>
     const CONFIG = {
       name: "Darko Bojovski",
-      champLine: "Balkan Overall Juniors Champion — Bodybuilding",
-      tagline: "Personal Coach • Online Coaching • Transformation Systems",
+      champLine: "Balkan Overall Juniors Champion",
+      tagline: "Coaching • Plans • Transformations",
 
       instagramUrl: "https://www.instagram.com/d_bojovski/",
       tiktokUrl: "https://www.tiktok.com/@d_bojovski",
 
-      whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Training%20days%2Fweek%3A%20__.%20I%20can%20send%20a%20current%20photo.",
+      whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo.",
       email: "darko.bojovski@gmail.com",
 
       paypalUrl: "",
@@ -659,9 +666,9 @@
 
     document.getElementById("primaryCta").href = CONFIG.whatsappUrl;
 
-    const ig = document.getElementById("ig"); ig.href = CONFIG.instagramUrl;
-    const tt = document.getElementById("tt"); tt.href = CONFIG.tiktokUrl;
-    const wa = document.getElementById("wa"); wa.href = CONFIG.whatsappUrl;
+    document.getElementById("ig").href = CONFIG.instagramUrl;
+    document.getElementById("tt").href = CONFIG.tiktokUrl;
+    document.getElementById("wa").href = CONFIG.whatsappUrl;
 
     const mail = document.getElementById("mail");
     document.getElementById("mailSub").textContent = CONFIG.email;
