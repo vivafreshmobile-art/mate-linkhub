@@ -38,39 +38,29 @@
       background: linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
-
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important; }
     }
 
     /* BACKGROUND PHOTO AS TEXTURE (fade the subject) */
     .bg-photo{
-      position:fixed;
-      inset:0;
-      z-index:-4;
+      position:fixed; inset:0; z-index:-4;
       background: url("bg.jpg") center/cover no-repeat;
       filter: blur(18px) saturate(.85) contrast(.95);
       transform: scale(1.10);
       opacity:.55;
     }
-    /* dark overlay + vignette so it never steals attention */
     .bg-overlay{
-      position:fixed;
-      inset:0;
-      z-index:-3;
+      position:fixed; inset:0; z-index:-3;
       background:
         radial-gradient(900px 650px at 50% 15%, rgba(242,193,78,.10), transparent 60%),
         radial-gradient(1100px 900px at 50% 110%, rgba(155,28,34,.12), transparent 65%),
         radial-gradient(1200px 900px at 50% 40%, rgba(0,0,0,.20), rgba(0,0,0,.78)),
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.85));
     }
-    /* mask: fades the center/body more, keeps edges as texture */
     .bg-mask{
-      position:fixed;
-      inset:0;
-      z-index:-2;
+      position:fixed; inset:0; z-index:-2;
       background: radial-gradient(circle at 52% 35%,
         rgba(0,0,0,.92) 0%,
         rgba(0,0,0,.70) 22%,
@@ -80,13 +70,9 @@
       mix-blend-mode:multiply;
       pointer-events:none;
     }
-
-    /* subtle grain */
     .grain{
       pointer-events:none;
-      position:fixed;
-      inset:0;
-      z-index:-1;
+      position:fixed; inset:0; z-index:-1;
       opacity:.10;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
@@ -108,12 +94,9 @@
       position:relative;
       overflow:hidden;
     }
-
-    /* faint laurel / champion vibe via gradient stroke */
     .hero::before{
       content:"";
-      position:absolute;
-      inset:-2px;
+      position:absolute; inset:-2px;
       background:
         radial-gradient(700px 240px at 25% 0%, rgba(242,193,78,.14), transparent 65%),
         radial-gradient(600px 280px at 85% 10%, rgba(155,28,34,.14), transparent 70%),
@@ -121,19 +104,27 @@
       opacity:.9;
       pointer-events:none;
     }
-
     .hero-inner{ position:relative; display:flex; gap:14px; align-items:center; }
 
-    .pfp{
+    /* Logo block (code-generated SVG sits inside) */
+    .logo{
       width:64px; height:64px;
       border-radius: 18px;
       border:1px solid rgba(255,255,255,.14);
       background:
-        radial-gradient(circle at 30% 30%, rgba(242,193,78,.24), transparent 60%),
-        radial-gradient(circle at 70% 55%, rgba(155,28,34,.20), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.14));
+        radial-gradient(circle at 30% 30%, rgba(242,193,78,.18), transparent 62%),
+        radial-gradient(circle at 70% 55%, rgba(155,28,34,.18), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18));
+      display:grid;
+      place-items:center;
       overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
       flex:0 0 auto;
+    }
+    .logo svg{
+      width:44px; height:44px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
+      opacity:.95;
     }
 
     .title{ min-width:0; }
@@ -159,12 +150,7 @@
       line-height:1.35;
     }
 
-    .proof{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:12px;
-    }
+    .proof{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
     .chip{
       font-size:12px;
       padding:7px 10px;
@@ -188,7 +174,6 @@
       box-shadow: 0 10px 44px rgba(0,0,0,.36);
     }
 
-    /* PRIMARY CTA (WhatsApp) */
     .cta{
       display:flex;
       align-items:center;
@@ -205,8 +190,7 @@
     }
     .cta::before{
       content:"";
-      position:absolute;
-      inset:-2px;
+      position:absolute; inset:-2px;
       background: radial-gradient(760px 220px at 10% 20%, rgba(242,193,78,.18), transparent 62%);
       opacity:.9;
       pointer-events:none;
@@ -234,7 +218,6 @@
     }
     .cta:hover .arrow{ transform: translateX(2px); }
 
-    /* Secondary CTA row */
     .cta-row{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -254,7 +237,6 @@
     .mini small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); }
 
     .links{ display:grid; gap:10px; }
-
     .link{
       display:flex;
       align-items:center;
@@ -287,19 +269,109 @@
       max-width: 100%;
     }
 
-    .services{
-      margin-top: 12px;
+    /* Improved offer section */
+    .offer-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-end;
+      padding: 2px 2px 10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      margin-bottom:12px;
+    }
+    .offer-head .h{
+      font-weight: 900;
+      letter-spacing:.35px;
+      font-size: 13px;
+    }
+    .offer-head .sub{
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      border-radius: 16px;
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(520px 160px at 10% 10%, rgba(242,193,78,.10), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card .t{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+    .card .t b{
+      font-size: 13px;
+      letter-spacing:.25px;
+    }
+    .tag{
+      font-size:11.5px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(242,193,78,.28);
+      color: rgba(255,255,255,.88);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .card p{
+      position:relative;
+      margin:8px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: 12.3px;
+      line-height:1.55;
+      letter-spacing:.15px;
+    }
+    .bullets{
+      position:relative;
+      margin:10px 0 0;
+      display:grid;
+      gap:6px;
+      color: rgba(255,255,255,.82);
+      font-size: 12.3px;
+      line-height:1.5;
+    }
+    .bullets div::before{
+      content:"• ";
+      color: rgba(242,193,78,.90);
+    }
+
+    .process{
+      margin-top:12px;
       border-top: 1px solid rgba(255,255,255,.10);
       padding-top: 12px;
-      color: rgba(255,255,255,.84);
-      font-size: 12.6px;
-      line-height: 1.6;
+      display:grid;
+      gap:10px;
     }
-    .services .h{
-      font-weight: 900;
-      letter-spacing: .35px;
-      margin-bottom: 6px;
-      color: rgba(255,255,255,.92);
+    .step{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 10px 10px;
+    }
+    .step b{ font-size:12.5px; letter-spacing:.2px; }
+    .step small{
+      display:block;
+      margin-top:4px;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height:1.45;
     }
 
     .footer{
@@ -320,6 +392,10 @@
     .reveal.d3{ animation-delay: .18s; }
     .reveal.d4{ animation-delay: .26s; }
     @keyframes in{ to{ opacity:1; transform: translateY(0); } }
+
+    @media (min-width: 680px){
+      .cards{ grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 
@@ -332,7 +408,33 @@
   <main class="wrap">
     <section class="hero reveal">
       <div class="hero-inner">
-        <div class="pfp" aria-hidden="true"></div>
+        <!-- Code-generated training logo -->
+        <div class="logo" aria-label="Training logo">
+          <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="var(--gold2)"/>
+                <stop offset="1" stop-color="var(--gold)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- barbell -->
+            <path d="M16 18h4v12h-4zM44 18h4v12h-4z" fill="rgba(255,255,255,.22)"/>
+            <path d="M20 23h24" stroke="rgba(255,255,255,.30)" stroke-width="3.2" stroke-linecap="round"/>
+
+            <!-- simplified flexed arm -->
+            <path d="M20 42c4-9 10-12 16-10 2-3 5-4 8-3 3 1 5 4 5 7 0 5-4 9-10 9H30c-5 0-8-2-10-3z"
+                  fill="url(#g)" opacity=".95"/>
+
+            <!-- forearm highlight -->
+            <path d="M26 40c2-3 5-5 9-5" stroke="rgba(0,0,0,.28)" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+
+            <!-- small crown star -->
+            <path d="M32 10l1.6 3.4 3.7.5-2.7 2.5.7 3.7-3.3-1.8-3.3 1.8.7-3.7-2.7-2.5 3.7-.5z"
+                  fill="rgba(242,193,78,.85)" opacity=".85"/>
+          </svg>
+        </div>
+
         <div class="title">
           <h1 class="name" id="name">DARKO BOJOVSKI</h1>
           <div class="champ" id="champLine">Balkan Overall Juniors Champion — Bodybuilding</div>
@@ -369,7 +471,7 @@
           <a class="mini" id="paypalBtn" href="#" target="_blank" rel="noopener">
             <div>
               <b>Support (PayPal)</b>
-              <small id="paypalSub">Coming soon</small>
+              <small id="paypalSub">Set PayPal.Me later</small>
             </div>
             <div aria-hidden="true">→</div>
           </a>
@@ -384,7 +486,7 @@
         </div>
       </section>
 
-      <!-- Links -->
+      <!-- Links + Offer -->
       <section class="panel reveal d3">
         <div class="links">
           <a class="link" id="ig" href="#" target="_blank" rel="noopener">
@@ -439,13 +541,54 @@
           </a>
         </div>
 
-        <div class="services">
-          <div class="h">Services</div>
-          <div>• Personal / Online Coaching</div>
-          <div>• Training Plan</div>
-          <div>• Diet Plan</div>
-          <div>• Lifestyle Evaluation</div>
-          <div>• Check-ups & Progress</div>
+        <!-- Offer (conversion-focused) -->
+        <div style="margin-top:12px;">
+          <div class="offer-head">
+            <div>
+              <div class="h">Work With Me</div>
+              <div class="sub">Choose a path. Get a plan. Follow it.</div>
+            </div>
+            <div class="sub">DM on WhatsApp</div>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="t">
+                <b>1:1 Coaching</b>
+                <span class="tag">Best results</span>
+              </div>
+              <p>Full guidance, adjustments, accountability. Built for people who want serious change.</p>
+              <div class="bullets">
+                <div>Training plan + progression</div>
+                <div>Diet plan + weekly updates</div>
+                <div>Check-ins + corrections</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="t">
+                <b>Online Plan</b>
+                <span class="tag">Fast start</span>
+              </div>
+              <p>A clear structure you can follow immediately. Ideal if you want direction without daily coaching.</p>
+              <div class="bullets">
+                <div>Training plan (goal-based)</div>
+                <div>Diet plan (simple rules)</div>
+                <div>Follow-up check-ups</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="process">
+            <div class="step">
+              <b>How it works</b>
+              <small>Message me on WhatsApp → I ask for a few details → you get your plan → we track progress and adjust.</small>
+            </div>
+            <div class="step">
+              <b>Who this is for</b>
+              <small>Busy people, beginners who need structure, and lifters who want a champion-built system.</small>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -456,7 +599,6 @@
   </main>
 
   <script>
-    // ========= EDIT SETTINGS HERE (only this section) =========
     const CONFIG = {
       name: "Darko Bojovski",
       champLine: "Balkan Overall Juniors Champion — Bodybuilding",
@@ -467,24 +609,16 @@
       whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20What%20do%20you%20need%20from%20me%3F",
       email: "darko.bojovski@gmail.com",
 
-      // Optional: set later
       paypalUrl: "",
-
-      // Results can point to IG for now (later: a dedicated results page/highlights)
       resultsUrl: "https://www.instagram.com/d_bojovski/"
     };
-    // =========================================================
 
-    // Fill text
     document.getElementById("name").textContent = CONFIG.name;
     document.getElementById("champLine").textContent = CONFIG.champLine;
     document.getElementById("tagline").textContent = CONFIG.tagline;
 
-    // Primary CTA = WhatsApp
-    const primaryCta = document.getElementById("primaryCta");
-    primaryCta.href = CONFIG.whatsappUrl;
+    document.getElementById("primaryCta").href = CONFIG.whatsappUrl;
 
-    // Links
     const ig = document.getElementById("ig"); ig.href = CONFIG.instagramUrl;
     const tt = document.getElementById("tt"); tt.href = CONFIG.tiktokUrl;
     const wa = document.getElementById("wa"); wa.href = CONFIG.whatsappUrl;
@@ -493,10 +627,8 @@
     document.getElementById("mailSub").textContent = CONFIG.email;
     mail.href = "mailto:" + CONFIG.email;
 
-    // Results
     document.getElementById("resultsBtn").href = CONFIG.resultsUrl;
 
-    // PayPal (optional)
     const paypalBtn = document.getElementById("paypalBtn");
     const paypalSub = document.getElementById("paypalSub");
     if (CONFIG.paypalUrl && CONFIG.paypalUrl.startsWith("http")) {
