@@ -4,25 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#07080c" />
-  <meta name="description" content="Strength • Art • Champion — links & support." />
-  <title>Link Hub</title>
+  <meta name="description" content="Darko Bojovski — Balkan Overall Juniors Champion — Personal Coach." />
+  <title>Darko Bojovski — Coaching</title>
 
   <style>
     :root{
       --bg:#07080c;
       --bg2:#0b0d12;
-      --card:rgba(255,255,255,.055);
-      --card2:rgba(255,255,255,.075);
       --stroke:rgba(255,255,255,.14);
+      --card:rgba(255,255,255,.05);
+      --card2:rgba(255,255,255,.07);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.54);
+      --muted2:rgba(255,255,255,.52);
 
-      --accent:#b8ff3d;     /* lime */
-      --accent2:#7c3dff;    /* violet */
-      --steel:#a9b1c4;      /* cold highlight */
-      --shadow: 0 18px 70px rgba(0,0,0,.62);
+      /* Champion palette (gold + deep red) */
+      --gold:#f2c14e;
+      --gold2:#ffde7a;
+      --red:#9b1c22;
 
+      --shadow: 0 20px 70px rgba(0,0,0,.62);
       --radius: 20px;
       --radius2: 28px;
       --max: 760px;
@@ -34,211 +35,149 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 18% 12%, rgba(124,61,255,.14), transparent 55%),
-        radial-gradient(900px 650px at 75% 35%, rgba(184,255,61,.10), transparent 60%),
-        radial-gradient(900px 900px at 50% 110%, rgba(169,177,196,.08), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
 
     @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important; scroll-behavior:auto !important; }
+      *{ animation:none !important; transition:none !important; }
+    }
+
+    /* BACKGROUND PHOTO AS TEXTURE (fade the subject) */
+    .bg-photo{
+      position:fixed;
+      inset:0;
+      z-index:-4;
+      background: url("bg.jpg") center/cover no-repeat;
+      filter: blur(18px) saturate(.85) contrast(.95);
+      transform: scale(1.10);
+      opacity:.55;
+    }
+    /* dark overlay + vignette so it never steals attention */
+    .bg-overlay{
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      background:
+        radial-gradient(900px 650px at 50% 15%, rgba(242,193,78,.10), transparent 60%),
+        radial-gradient(1100px 900px at 50% 110%, rgba(155,28,34,.12), transparent 65%),
+        radial-gradient(1200px 900px at 50% 40%, rgba(0,0,0,.20), rgba(0,0,0,.78)),
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.85));
+    }
+    /* mask: fades the center/body more, keeps edges as texture */
+    .bg-mask{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background: radial-gradient(circle at 52% 35%,
+        rgba(0,0,0,.92) 0%,
+        rgba(0,0,0,.70) 22%,
+        rgba(0,0,0,.35) 52%,
+        rgba(0,0,0,.80) 76%,
+        rgba(0,0,0,.92) 100%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+
+    /* subtle grain */
+    .grain{
+      pointer-events:none;
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.10;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
     }
 
     .wrap{
       width:min(var(--max), calc(100% - 32px));
       margin:0 auto;
       padding: 22px 0 42px;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
     }
 
-    /* Ambient “ink” */
-    .ink{
-      position:fixed;
-      inset:-30vh -30vw auto -30vw;
-      height:55vh;
-      pointer-events:none;
-      filter: blur(18px);
-      opacity:.85;
-      transform: translate3d(0,0,0);
-    }
-    .ink::before, .ink::after{
-      content:"";
-      position:absolute;
-      width:46vw; height:46vw;
-      border-radius: 50%;
-      left:10vw; top:8vh;
-      background: radial-gradient(circle at 30% 30%, rgba(184,255,61,.34), transparent 62%);
-      animation: float1 12s ease-in-out infinite;
-    }
-    .ink::after{
-      width:54vw; height:54vw;
-      left:auto; right:6vw; top:4vh;
-      background: radial-gradient(circle at 70% 40%, rgba(124,61,255,.30), transparent 64%);
-      animation: float2 14s ease-in-out infinite;
-    }
-    @keyframes float1{
-      0%,100%{ transform: translate(0,0) scale(1); opacity:.90; }
-      50%{ transform: translate(10px, 20px) scale(1.03); opacity:.78; }
-    }
-    @keyframes float2{
-      0%,100%{ transform: translate(0,0) scale(1); opacity:.84; }
-      50%{ transform: translate(-12px, 22px) scale(1.035); opacity:.74; }
-    }
-
-    /* Grain + “muscle fiber” striations */
-    .grain{
-      pointer-events:none;
-      position:fixed;
-      inset:0;
-      opacity:.10;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-    }
-    .fibers{
-      pointer-events:none;
-      position:fixed;
-      inset:0;
-      opacity:.10;
-      mix-blend-mode: soft-light;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          rgba(255,255,255,.06),
-          rgba(255,255,255,.06) 1px,
-          transparent 1px,
-          transparent 14px
-        );
-      mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), transparent 70%);
-      -webkit-mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), transparent 70%);
-    }
-
-    .safe{ padding-bottom: max(24px, env(safe-area-inset-bottom)); }
-
-    /* Hero */
     .hero{
-      position:relative;
       border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.070), rgba(255,255,255,.035));
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
       border-radius: var(--radius2);
       box-shadow: var(--shadow);
-      padding: 18px 18px 16px;
+      padding: 18px;
+      position:relative;
       overflow:hidden;
-      transform: translateZ(0);
     }
 
-    /* subtle pressure sweep */
+    /* faint laurel / champion vibe via gradient stroke */
     .hero::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(680px 240px at 24% 0%, rgba(184,255,61,.16), transparent 64%),
-        radial-gradient(580px 260px at 86% 12%, rgba(124,61,255,.15), transparent 68%),
+        radial-gradient(700px 240px at 25% 0%, rgba(242,193,78,.14), transparent 65%),
+        radial-gradient(600px 280px at 85% 10%, rgba(155,28,34,.14), transparent 70%),
         linear-gradient(90deg, transparent, rgba(255,255,255,.05), transparent);
-      pointer-events:none;
       opacity:.9;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:-40% -30%;
-      background: radial-gradient(circle at 30% 45%, rgba(169,177,196,.16), transparent 58%);
-      opacity:.55;
-      transform: translateX(-10%);
-      animation: press 8.5s ease-in-out infinite;
       pointer-events:none;
-    }
-    @keyframes press{
-      0%,100%{ transform: translateX(-10%); opacity:.45; }
-      50%{ transform: translateX(10%); opacity:.62; }
     }
 
-    .hero-inner{
-      position:relative;
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
+    .hero-inner{ position:relative; display:flex; gap:14px; align-items:center; }
 
     .pfp{
       width:64px; height:64px;
       border-radius: 18px;
       border:1px solid rgba(255,255,255,.14);
       background:
-        radial-gradient(circle at 30% 30%, rgba(184,255,61,.22), transparent 60%),
-        radial-gradient(circle at 70% 55%, rgba(124,61,255,.22), transparent 60%),
+        radial-gradient(circle at 30% 30%, rgba(242,193,78,.24), transparent 60%),
+        radial-gradient(circle at 70% 55%, rgba(155,28,34,.20), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.14));
-      position:relative;
       overflow:hidden;
       flex:0 0 auto;
     }
-    .pfp::after{
-      content:"";
-      position:absolute;
-      inset:-50%;
-      background: conic-gradient(from 210deg, transparent, rgba(255,255,255,.14), transparent);
-      animation: sheen 5.2s linear infinite;
-      opacity:.70;
-    }
-    @keyframes sheen{
-      0%{ transform: translateX(-18%) rotate(0deg); }
-      100%{ transform: translateX(18%) rotate(360deg); }
-    }
 
-    .title{ display:flex; flex-direction:column; min-width:0; }
-
+    .title{ min-width:0; }
     .name{
       margin:0;
       font-size: 19px;
       font-weight: 900;
-      letter-spacing: .6px;
-      line-height:1.05;
+      letter-spacing: .7px;
       text-transform: uppercase;
-      text-wrap:balance;
+      line-height: 1.05;
     }
-
-    .tagline{
+    .champ{
       margin:7px 0 0;
-      color:var(--muted);
       font-size: 12.8px;
-      line-height:1.35;
+      letter-spacing: .35px;
+      color: rgba(255,255,255,.86);
+    }
+    .tagline{
+      margin:6px 0 0;
+      font-size: 12.6px;
+      color: var(--muted);
       letter-spacing:.25px;
-      text-wrap:balance;
+      line-height:1.35;
     }
 
-    .badge-row{
+    .proof{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:11px;
+      margin-top:12px;
     }
-
-    .badge{
+    .chip{
       font-size:12px;
-      color:rgba(255,255,255,.86);
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      padding:6px 10px;
+      padding:7px 10px;
       border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.88);
     }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 18px rgba(184,255,61,.35);
-    }
-    .dot.purple{
-      background: var(--accent2);
-      box-shadow: 0 0 18px rgba(124,61,255,.35);
+    .chip.gold{
+      border-color: rgba(242,193,78,.35);
+      box-shadow: 0 0 20px rgba(242,193,78,.10);
     }
 
-    /* Layout */
     .grid{ margin-top: 14px; display:grid; gap: 12px; }
 
     .panel{
@@ -249,7 +188,7 @@
       box-shadow: 0 10px 44px rgba(0,0,0,.36);
     }
 
-    /* Primary CTA - “weighted” feel */
+    /* PRIMARY CTA (WhatsApp) */
     .cta{
       display:flex;
       align-items:center;
@@ -258,75 +197,62 @@
       padding: 14px 14px;
       border-radius: 18px;
       background:
-        linear-gradient(135deg, rgba(184,255,61,.18), rgba(124,61,255,.13)),
+        linear-gradient(135deg, rgba(242,193,78,.18), rgba(155,28,34,.14)),
         rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.17);
       position:relative;
       overflow:hidden;
-      transform: translateZ(0);
     }
     .cta::before{
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(720px 220px at 10% 20%, rgba(184,255,61,.20), transparent 62%);
+      background: radial-gradient(760px 220px at 10% 20%, rgba(242,193,78,.18), transparent 62%);
       opacity:.9;
       pointer-events:none;
     }
-    .cta::after{
-      content:"";
-      position:absolute;
-      inset:-50% -30%;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,.10), transparent 55%);
-      opacity:.0;
-      transform: translateX(-8%);
-      transition: opacity .25s ease;
-      pointer-events:none;
-    }
+    .cta strong{ display:block; font-size: 14px; letter-spacing:.25px; }
+    .cta span{ display:block; font-size: 12px; color: var(--muted); margin-top:4px; }
 
-    .cta strong{
-      display:block;
-      font-size: 14px;
-      letter-spacing:.25px;
-    }
-    .cta span{
-      display:block;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top:4px;
-      letter-spacing:.2px;
-    }
-
-    .cta .right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      position:relative;
-    }
-
+    .right{ display:flex; align-items:center; gap:10px; position:relative; }
     .pill{
       font-size: 12px;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
+      border: 1px solid rgba(242,193,78,.35);
       background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.86);
+      color: rgba(255,255,255,.90);
       white-space:nowrap;
     }
-
     .arrow{
       width:34px; height:34px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
       display:grid; place-items:center;
-      transition: transform .22s cubic-bezier(.2,.9,.2,1), background .22s ease;
+      transition: transform .22s cubic-bezier(.2,.9,.2,1);
     }
+    .cta:hover .arrow{ transform: translateX(2px); }
 
-    .cta:hover .arrow{ transform: translateX(2px); background: rgba(255,255,255,.08); }
-    .cta:hover::after{ opacity:.65; }
+    /* Secondary CTA row */
+    .cta-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .mini{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+    }
+    .mini b{ font-size: 13px; letter-spacing:.2px; }
+    .mini small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); }
 
-    /* Links */
     .links{ display:grid; gap:10px; }
 
     .link{
@@ -338,25 +264,8 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.04);
       transition: transform .18s cubic-bezier(.2,.9,.2,1), background .18s ease, border-color .18s ease;
-      position:relative;
-      overflow:hidden;
     }
-
-    .link::after{
-      content:"";
-      position:absolute;
-      inset:-60% -40%;
-      background: radial-gradient(circle at 18% 42%, rgba(184,255,61,.11), transparent 62%);
-      opacity:0;
-      transition: opacity .18s ease;
-      pointer-events:none;
-    }
-    .link:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.21);
-    }
-    .link:hover::after{ opacity:1; }
+    .link:hover{ transform: translateY(-1px); background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.21); }
 
     .icon{
       width:38px; height:38px;
@@ -366,17 +275,31 @@
       display:grid; place-items:center;
       flex:0 0 auto;
     }
-
-    .label{ display:flex; flex-direction:column; min-width:0; }
-    .label b{ font-size: 13px; letter-spacing:.25px; }
+    .label b{ font-size:13px; letter-spacing:.25px; }
     .label small{
-      font-size: 12px;
-      color: var(--muted2);
+      display:block;
       margin-top:4px;
+      font-size:12px;
+      color:var(--muted2);
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-      letter-spacing:.2px;
+      max-width: 100%;
+    }
+
+    .services{
+      margin-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 12px;
+      color: rgba(255,255,255,.84);
+      font-size: 12.6px;
+      line-height: 1.6;
+    }
+    .services .h{
+      font-weight: 900;
+      letter-spacing: .35px;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,.92);
     }
 
     .footer{
@@ -388,7 +311,6 @@
       letter-spacing:.2px;
     }
 
-    /* Entry animation: “weighted” */
     .reveal{
       opacity:0;
       transform: translateY(12px);
@@ -397,46 +319,44 @@
     .reveal.d2{ animation-delay: .10s; }
     .reveal.d3{ animation-delay: .18s; }
     .reveal.d4{ animation-delay: .26s; }
-
-    @keyframes in{
-      to{ opacity:1; transform: translateY(0); }
-    }
-
-    .tap:active{ transform: scale(.992); }
+    @keyframes in{ to{ opacity:1; transform: translateY(0); } }
   </style>
 </head>
 
 <body>
-  <div class="ink" aria-hidden="true"></div>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="bg-mask" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
-  <div class="fibers" aria-hidden="true"></div>
 
-  <main class="wrap safe">
+  <main class="wrap">
     <section class="hero reveal">
       <div class="hero-inner">
-        <div class="pfp" title="Add a photo later (optional)"></div>
+        <div class="pfp" aria-hidden="true"></div>
         <div class="title">
-          <!-- EDIT THESE -->
-          <h1 class="name" id="name">YOUR MATE’S NAME</h1>
-          <p class="tagline" id="tagline">Strength. Form. Control. Gym x Art.</p>
+          <h1 class="name" id="name">DARKO BOJOVSKI</h1>
+          <div class="champ" id="champLine">Balkan Overall Juniors Champion — Bodybuilding</div>
+          <div class="tagline" id="tagline">Personal Coach • Online Coaching • Transformation Systems</div>
 
-          <div class="badge-row">
-            <div class="badge"><span class="dot"></span><span id="badge1">Balkan Overall Juniors Champion</span></div>
-            <div class="badge"><span class="dot purple"></span><span id="badge2">Bodybuilding • Artist</span></div>
+          <div class="proof">
+            <div class="chip gold">Champion</div>
+            <div class="chip">Personal / Online Coaching</div>
+            <div class="chip">Plans • Check-ups • Results</div>
           </div>
         </div>
       </div>
     </section>
 
     <div class="grid">
+      <!-- Primary CTA: WhatsApp -->
       <section class="panel reveal d2">
-        <a class="cta tap" id="paypalBtn" href="#" target="_blank" rel="noopener">
+        <a class="cta" id="primaryCta" href="#" target="_blank" rel="noopener">
           <div>
-            <strong>Support / Pay (PayPal)</strong>
-            <span id="paypalSub">PayPal link not set yet — tap to create PayPal.Me, then paste it into the file.</span>
+            <strong>Start Coaching (WhatsApp)</strong>
+            <span>Message now. Get the first steps + what I need from you.</span>
           </div>
           <div class="right">
-            <span class="pill" id="paypalPill">Set PayPal</span>
+            <span class="pill">Sign up</span>
             <div class="arrow" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M9 18l6-6-6-6" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -444,73 +364,93 @@
             </div>
           </div>
         </a>
+
+        <div class="cta-row">
+          <a class="mini" id="paypalBtn" href="#" target="_blank" rel="noopener">
+            <div>
+              <b>Support (PayPal)</b>
+              <small id="paypalSub">Coming soon</small>
+            </div>
+            <div aria-hidden="true">→</div>
+          </a>
+
+          <a class="mini" id="resultsBtn" href="#" target="_blank" rel="noopener">
+            <div>
+              <b>Results</b>
+              <small>See transformations</small>
+            </div>
+            <div aria-hidden="true">→</div>
+          </a>
+        </div>
       </section>
 
+      <!-- Links -->
       <section class="panel reveal d3">
-        <div class="links" id="links">
-          <a class="link tap" id="ig" href="#" target="_blank" rel="noopener">
+        <div class="links">
+          <a class="link" id="ig" href="#" target="_blank" rel="noopener">
             <div class="icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
               </svg>
             </div>
-            <div class="label"><b>Instagram</b><small id="igSub">@yourhandle</small></div>
-          </a>
-
-          <a class="link tap" id="fb" href="#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v6h3v-6h3l1-3h-4v-3c0-.55.45-1 1-1Z" fill="rgba(255,255,255,.88)"/>
-              </svg>
+            <div class="label">
+              <b>Instagram</b>
+              <small id="igSub">@d_bojovski</small>
             </div>
-            <div class="label"><b>Facebook</b><small id="fbSub">Page / profile</small></div>
           </a>
 
-          <a class="link tap" id="tt" href="#" target="_blank" rel="noopener">
+          <a class="link" id="tt" href="#" target="_blank" rel="noopener">
             <div class="icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M14 3v10.2a3.8 3.8 0 1 1-2-3.4V5.5c2 2.8 4.5 4.3 7 4.5V13c-2.6-.2-4.6-1.2-5-2v6.2a5.8 5.8 0 1 1-2-4.4V3h2Z" fill="rgba(255,255,255,.88)"/>
               </svg>
             </div>
-            <div class="label"><b>TikTok</b><small id="ttSub">@yourhandle</small></div>
+            <div class="label">
+              <b>TikTok</b>
+              <small id="ttSub">@d_bojovski</small>
+            </div>
           </a>
 
-          <a class="link tap" id="wa" href="#" target="_blank" rel="noopener">
+          <a class="link" id="wa" href="#" target="_blank" rel="noopener">
             <div class="icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M21 12a8.5 8.5 0 0 1-12.8 7.4L3 21l1.7-4.9A8.5 8.5 0 1 1 21 12Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M9 11c1.2 2.3 3.6 3.9 6 4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <div class="label"><b>WhatsApp</b><small id="waSub">Message directly</small></div>
-          </a>
-
-          <a class="link tap" id="li" href="#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M6 9H3v12h3V9Z" fill="rgba(255,255,255,.88)"/>
-                <path d="M4.5 3.5a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6Z" fill="rgba(255,255,255,.88)"/>
-                <path d="M9 9h3v1.8c.6-1.1 1.8-2 3.7-2 3 0 4.3 2 4.3 5.1V21h-3v-6.4c0-1.9-.7-3-2.2-3-1.6 0-2.5 1.1-2.5 3V21H9V9Z" fill="rgba(255,255,255,.88)"/>
-              </svg>
+            <div class="label">
+              <b>WhatsApp</b>
+              <small id="waSub">Message directly</small>
             </div>
-            <div class="label"><b>LinkedIn</b><small id="liSub">Profile</small></div>
           </a>
 
-          <a class="link tap" id="mail" href="#">
+          <a class="link" id="mail" href="#">
             <div class="icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
                 <path d="m4 8 8 6 8-6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="label"><b>Email</b><small id="mailSub">your@email.com</small></div>
+            <div class="label">
+              <b>Email</b>
+              <small id="mailSub">darko.bojovski@gmail.com</small>
+            </div>
           </a>
+        </div>
+
+        <div class="services">
+          <div class="h">Services</div>
+          <div>• Personal / Online Coaching</div>
+          <div>• Training Plan</div>
+          <div>• Diet Plan</div>
+          <div>• Lifestyle Evaluation</div>
+          <div>• Check-ups & Progress</div>
         </div>
       </section>
 
       <div class="footer reveal d4">
-        Built under pressure. Made to perform on mobile.
+        Champion-level coaching. Clear steps. Real results.
       </div>
     </div>
   </main>
@@ -518,116 +458,53 @@
   <script>
     // ========= EDIT SETTINGS HERE (only this section) =========
     const CONFIG = {
-      name: "YOUR MATE’S NAME",
-      tagline: "Strength. Form. Control. Gym x Art.",
-      badges: [
-        "Balkan Overall Juniors Champion",
-        "Bodybuilding • Artist"
-      ],
+      name: "Darko Bojovski",
+      champLine: "Balkan Overall Juniors Champion — Bodybuilding",
+      tagline: "Personal Coach • Online Coaching • Transformation Systems",
 
-      // Example: "https://www.paypal.me/username"
+      instagramUrl: "https://www.instagram.com/d_bojovski/",
+      tiktokUrl: "https://www.tiktok.com/@d_bojovski",
+      whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20What%20do%20you%20need%20from%20me%3F",
+      email: "darko.bojovski@gmail.com",
+
+      // Optional: set later
       paypalUrl: "",
 
-      links: {
-        instagram: { url: "", label: "@yourhandle" },
-        facebook:  { url: "", label: "Page / profile" },
-        tiktok:    { url: "", label: "@yourhandle" },
-
-        // Example: https://wa.me/38970123456
-        whatsapp:  { url: "", label: "Message directly" },
-
-        linkedin:  { url: "", label: "Profile" },
-        email:     { value: "your@email.com" }
-      }
+      // Results can point to IG for now (later: a dedicated results page/highlights)
+      resultsUrl: "https://www.instagram.com/d_bojovski/"
     };
     // =========================================================
 
     // Fill text
     document.getElementById("name").textContent = CONFIG.name;
+    document.getElementById("champLine").textContent = CONFIG.champLine;
     document.getElementById("tagline").textContent = CONFIG.tagline;
-    document.getElementById("badge1").textContent = CONFIG.badges[0] || "";
-    document.getElementById("badge2").textContent = CONFIG.badges[1] || "";
 
-    // PayPal behavior
-    const paypalBtn = document.getElementById("paypalBtn");
-    const paypalSub = document.getElementById("paypalSub");
-    const paypalPill = document.getElementById("paypalPill");
+    // Primary CTA = WhatsApp
+    const primaryCta = document.getElementById("primaryCta");
+    primaryCta.href = CONFIG.whatsappUrl;
 
-    if (CONFIG.paypalUrl && CONFIG.paypalUrl.startsWith("http")) {
-      paypalBtn.href = CONFIG.paypalUrl;
-      paypalSub.textContent = "Tap to pay via PayPal.";
-      paypalPill.textContent = "Pay now";
-      paypalPill.style.borderColor = "rgba(184,255,61,.35)";
-    } else {
-      paypalBtn.href = "https://www.paypal.com/paypalme/";
-      paypalSub.textContent = "PayPal link not set yet — tap to create PayPal.Me, then paste it into the file.";
-      paypalPill.textContent = "Set PayPal";
-      paypalPill.style.borderColor = "rgba(255,255,255,.18)";
-    }
-
-    function setLink(id, url, label){
-      const el = document.getElementById(id);
-      const sub = document.getElementById(id + "Sub");
-      if (label && sub) sub.textContent = label;
-
-      if (url && url.startsWith("http")) {
-        el.href = url;
-        el.style.opacity = "1";
-        el.style.pointerEvents = "auto";
-      } else {
-        el.href = "#";
-        el.style.opacity = ".55";
-        el.style.pointerEvents = "none";
-      }
-    }
-
-    setLink("ig", CONFIG.links.instagram.url, CONFIG.links.instagram.label);
-    setLink("fb", CONFIG.links.facebook.url, CONFIG.links.facebook.label);
-    setLink("tt", CONFIG.links.tiktok.url, CONFIG.links.tiktok.label);
-    setLink("wa", CONFIG.links.whatsapp.url, CONFIG.links.whatsapp.label);
-    setLink("li", CONFIG.links.linkedin.url, CONFIG.links.linkedin.label);
+    // Links
+    const ig = document.getElementById("ig"); ig.href = CONFIG.instagramUrl;
+    const tt = document.getElementById("tt"); tt.href = CONFIG.tiktokUrl;
+    const wa = document.getElementById("wa"); wa.href = CONFIG.whatsappUrl;
 
     const mail = document.getElementById("mail");
-    const mailSub = document.getElementById("mailSub");
-    mailSub.textContent = CONFIG.links.email.value || "your@email.com";
-    if (CONFIG.links.email.value && CONFIG.links.email.value.includes("@")) {
-      mail.href = "mailto:" + CONFIG.links.email.value;
-      mail.style.opacity = "1";
-      mail.style.pointerEvents = "auto";
+    document.getElementById("mailSub").textContent = CONFIG.email;
+    mail.href = "mailto:" + CONFIG.email;
+
+    // Results
+    document.getElementById("resultsBtn").href = CONFIG.resultsUrl;
+
+    // PayPal (optional)
+    const paypalBtn = document.getElementById("paypalBtn");
+    const paypalSub = document.getElementById("paypalSub");
+    if (CONFIG.paypalUrl && CONFIG.paypalUrl.startsWith("http")) {
+      paypalBtn.href = CONFIG.paypalUrl;
+      paypalSub.textContent = "Tap to support via PayPal";
     } else {
-      mail.href = "#";
-      mail.style.opacity = ".55";
-      mail.style.pointerEvents = "none";
-    }
-
-    // “Weighted” micro-tilt
-    const hero = document.querySelector(".hero");
-    let raf = null;
-
-    function onMove(e){
-      const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-      const rect = hero.getBoundingClientRect();
-      const x = (p.clientX - rect.left) / rect.width;
-      const y = (p.clientY - rect.top) / rect.height;
-
-      const rx = (y - 0.5) * -3.0;
-      const ry = (x - 0.5) *  4.0;
-
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        hero.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-    }
-    function onLeave(){
-      hero.style.transform = "rotateX(0deg) rotateY(0deg)";
-    }
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduced){
-      hero.addEventListener("mousemove", onMove, {passive:true});
-      hero.addEventListener("mouseleave", onLeave, {passive:true});
-      hero.addEventListener("touchmove", onMove, {passive:true});
-      hero.addEventListener("touchend", onLeave, {passive:true});
+      paypalBtn.href = "https://www.paypal.com/paypalme/";
+      paypalSub.textContent = "Set PayPal.Me later";
     }
   </script>
 </body>
