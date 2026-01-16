@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="mk">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
@@ -11,22 +11,27 @@
     :root{
       --bg:#07080c;
       --bg2:#0b0d12;
-      --stroke:rgba(255,255,255,.14);
-      --card:rgba(255,255,255,.05);
-      --card2:rgba(255,255,255,.07);
-      --text:rgba(255,255,255,.92);
+      --ink:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.52);
 
-      /* Champion palette */
+      --stroke:rgba(255,255,255,.14);
+      --card:rgba(255,255,255,.05);
+      --card2:rgba(255,255,255,.07);
+
       --gold:#f2c14e;
       --gold2:#ffde7a;
-      --red:#9b1c22;
-
       --shadow: 0 20px 70px rgba(0,0,0,.62);
-      --radius: 20px;
-      --radius2: 28px;
-      --max: 760px;
+
+      --r12:12px;
+      --r16:16px;
+      --r20:20px;
+      --r28:28px;
+
+      --max: 980px;
+
+      --safe-b: max(16px, env(safe-area-inset-bottom));
+      --safe-t: max(0px, env(safe-area-inset-top));
     }
 
     *{ box-sizing:border-box; }
@@ -34,40 +39,33 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      color:var(--text);
+      color:var(--ink);
       background: linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
     a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
     @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important; }
+      *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
     }
 
-    /* BACKGROUND PHOTO AS TEXTURE */
+    /* Background (supports optional image) */
     .bg-photo{
       position:fixed; inset:0; z-index:-4;
-      background: url("bg.PNG") center/cover no-repeat;
+      background:
+        radial-gradient(900px 500px at 30% 10%, rgba(242,193,78,.10), transparent 60%),
+        radial-gradient(900px 600px at 70% 20%, rgba(242,193,78,.07), transparent 60%),
+        radial-gradient(1100px 900px at 50% 110%, rgba(0,0,0,.75), rgba(0,0,0,.92)),
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.88));
+    }
+    /* If you add /assets/bg.jpg it will layer in as texture */
+    .bg-photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: url("assets/bg.jpg") center/cover no-repeat;
       filter: blur(18px) saturate(.85) contrast(.95);
       transform: scale(1.10);
-      opacity:.55;
-    }
-    .bg-overlay{
-      position:fixed; inset:0; z-index:-3;
-      background:
-        radial-gradient(900px 650px at 50% 15%, rgba(242,193,78,.10), transparent 60%),
-        radial-gradient(1100px 900px at 50% 110%, rgba(155,28,34,.12), transparent 65%),
-        radial-gradient(1200px 900px at 50% 40%, rgba(0,0,0,.20), rgba(0,0,0,.78)),
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.85));
-    }
-    .bg-mask{
-      position:fixed; inset:0; z-index:-2;
-      background: radial-gradient(circle at 52% 35%,
-        rgba(0,0,0,.92) 0%,
-        rgba(0,0,0,.70) 22%,
-        rgba(0,0,0,.35) 52%,
-        rgba(0,0,0,.80) 76%,
-        rgba(0,0,0,.92) 100%);
-      mix-blend-mode:multiply;
+      opacity:.42;
       pointer-events:none;
     }
     .grain{
@@ -81,91 +79,194 @@
     .wrap{
       width:min(var(--max), calc(100% - 32px));
       margin:0 auto;
-      padding: 22px 0 42px;
-      padding-bottom: max(24px, env(safe-area-inset-bottom));
+      padding: calc(14px + var(--safe-t)) 0 calc(80px + var(--safe-b));
     }
 
-    .hero{
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      position:relative;
-      overflow:hidden;
+    /* Top bar */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding: calc(10px + var(--safe-t)) 0 10px;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,8,12,.82), rgba(7,8,12,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(700px 240px at 25% 0%, rgba(242,193,78,.14), transparent 65%),
-        radial-gradient(600px 280px at 85% 10%, rgba(155,28,34,.14), transparent 70%),
-        linear-gradient(90deg, transparent, rgba(255,255,255,.05), transparent);
-      opacity:.9;
-      pointer-events:none;
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    .hero-inner{ position:relative; display:flex; gap:14px; align-items:center; }
-
-    /* Logo block (DARBO OUTLINE ONLY) */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
     .logo{
-      width:64px; height:64px;
-      border-radius: 18px;
+      width:44px; height:44px;
+      border-radius: 14px;
       border:1px solid rgba(255,255,255,.14);
       background:
         radial-gradient(circle at 30% 30%, rgba(242,193,78,.18), transparent 62%),
-        radial-gradient(circle at 70% 55%, rgba(155,28,34,.18), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18));
-      display:grid;
-      place-items:center;
-      overflow:hidden;
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.20));
+      display:grid; place-items:center;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
       flex:0 0 auto;
+    }
+    .logo svg{ width:40px; height:40px; opacity:.95; }
+    .brand-text{ min-width:0; }
+    .brand-text b{
+      display:block;
+      font-size: 13px;
+      letter-spacing:.7px;
+      text-transform: uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 55vw;
+    }
+    .brand-text small{
+      display:block;
+      margin-top:2px;
+      font-size: 12px;
+      color:var(--muted2);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 55vw;
+    }
+
+    .hamb{
+      width:44px; height:44px;
+      border-radius: 14px;
+      border:1px solid rgba(242,193,78,.28);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+    }
+    .hamb i{
+      width:18px; height:2px;
+      display:block;
+      background: rgba(242,193,78,.95);
+      border-radius: 999px;
       position:relative;
     }
-    .logo svg{
-      width:56px; height:56px;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
-      opacity:.95;
-      transform-origin: 50% 55%;
-      transition: transform .22s cubic-bezier(.2,.9,.2,1), filter .22s ease, opacity .22s ease;
+    .hamb i::before, .hamb i::after{
+      content:"";
+      position:absolute; left:0;
+      width:18px; height:2px;
+      background: rgba(242,193,78,.95);
+      border-radius:999px;
     }
-    .logo:hover svg{
-      transform: scale(1.035);
-      filter: drop-shadow(0 12px 22px rgba(0,0,0,.55));
-      opacity: 1;
-    }
-    @media (prefers-reduced-motion: no-preference){
-      .logo svg{ animation: logoPulse 6.5s ease-in-out infinite; }
-      @keyframes logoPulse{
-        0%,100%{ transform: scale(1); opacity:.95; }
-        50%{ transform: scale(1.02); opacity:1; }
-      }
-    }
+    .hamb i::before{ top:-6px; }
+    .hamb i::after{ top:6px; }
 
-    .title{ min-width:0; }
-    .name{
+    /* Mobile menu */
+    .menu{
+      position:fixed;
+      inset:0;
+      z-index:80;
+      display:none;
+    }
+    .menu.open{ display:block; }
+    .menu-backdrop{
+      position:absolute; inset:0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(8px);
+    }
+    .menu-sheet{
+      position:absolute;
+      top: calc(12px + var(--safe-t));
+      left: 16px;
+      right: 16px;
+      border-radius: var(--r20);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,18,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transform: translateY(-8px);
+      opacity:0;
+      animation: sheetIn .22s cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    @keyframes sheetIn{ to{ transform: translateY(0); opacity:1; } }
+
+    .menu-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .menu-head b{ font-size: 13px; letter-spacing:.35px; }
+    .menu-close{
+      width:40px; height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+    }
+    .menu-links{
+      padding: 10px;
+      display:grid;
+      gap:8px;
+    }
+    .menu-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .menu-links small{ color:var(--muted2); font-size:12px; }
+
+    /* Sections */
+    .section{
+      margin-top: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r28);
+      box-shadow: 0 10px 44px rgba(0,0,0,.36);
+      overflow:hidden;
+      position:relative;
+    }
+    .section::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(900px 240px at 20% 0%, rgba(242,193,78,.12), transparent 62%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .inner{ position:relative; padding: 16px; }
+
+    .hero{
+      padding: 18px 16px 16px;
+    }
+    .hero h1{
       margin:0;
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: .7px;
+      font-size: 28px;
+      font-weight: 950;
+      letter-spacing:.7px;
       text-transform: uppercase;
-      line-height: 1.05;
+      line-height:1.06;
     }
-    .champ{
-      margin:7px 0 0;
-      font-size: 12.8px;
-      letter-spacing: .35px;
-      color: rgba(255,255,255,.86);
+    .hero p{
+      margin:10px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: 13.2px;
+      line-height:1.6;
+      letter-spacing:.15px;
     }
-    .tagline{
-      margin:6px 0 0;
-      font-size: 12.6px;
-      color: var(--muted);
-      letter-spacing:.25px;
-      line-height:1.35;
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
     }
-
-    .proof{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
     .chip{
       font-size:12px;
       padding:7px 10px;
@@ -179,17 +280,13 @@
       box-shadow: 0 0 20px rgba(242,193,78,.10);
     }
 
-    .grid{ margin-top: 14px; display:grid; gap: 12px; }
-
-    .panel{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      padding: 12px;
-      box-shadow: 0 10px 44px rgba(0,0,0,.36);
-    }
-
+    /* CTA row */
     .cta{
+      margin-top: 14px;
+      display:grid;
+      gap:10px;
+    }
+    .cta-primary{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -197,32 +294,36 @@
       padding: 14px 14px;
       border-radius: 18px;
       background:
-        linear-gradient(135deg, rgba(242,193,78,.18), rgba(155,28,34,.14)),
+        linear-gradient(135deg, rgba(242,193,78,.18), rgba(0,0,0,.12)),
         rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.17);
-      position:relative;
       overflow:hidden;
+      position:relative;
     }
-    .cta::before{
+    .cta-primary::before{
       content:"";
       position:absolute; inset:-2px;
       background: radial-gradient(760px 220px at 10% 20%, rgba(242,193,78,.18), transparent 62%);
       opacity:.9;
       pointer-events:none;
     }
-    .cta strong{ display:block; font-size: 14px; letter-spacing:.25px; }
-    .cta span{
+    .cta-primary strong{ display:block; font-size:14px; letter-spacing:.25px; }
+    .cta-primary span{
       display:block;
-      font-size: 12px;
-      color: var(--muted);
       margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      overflow: hidden;
+      overflow:hidden;
       -webkit-line-clamp: 2;
     }
-
-    .right{ display:flex; align-items:center; gap:10px; position:relative; }
+    .cta-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      position:relative;
+    }
     .pill{
       font-size: 12px;
       padding: 8px 10px;
@@ -240,13 +341,12 @@
       display:grid; place-items:center;
       transition: transform .22s cubic-bezier(.2,.9,.2,1);
     }
-    .cta:hover .arrow{ transform: translateX(2px); }
+    .cta-primary:hover .arrow{ transform: translateX(2px); }
 
-    .cta-row{
+    .cta-mini{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:10px;
-      margin-top:10px;
     }
     .mini{
       display:flex;
@@ -260,55 +360,50 @@
     .mini b{ font-size: 13px; letter-spacing:.2px; }
     .mini small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); }
 
-    .links{ display:grid; gap:10px; }
-    .link{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding: 12px 12px;
+    /* Stats */
+    .stats{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .stat{
       border-radius: 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      transition: transform .18s cubic-bezier(.2,.9,.2,1), background .18s ease, border-color .18s ease;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      padding: 12px;
     }
-    .link:hover{ transform: translateY(-1px); background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.21); }
-
-    .icon{
-      width:38px; height:38px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      display:grid; place-items:center;
-      flex:0 0 auto;
+    .stat .n{
+      font-size: 26px;
+      font-weight: 950;
+      letter-spacing:.5px;
+      color: rgba(242,193,78,.95);
+      line-height:1;
     }
-    .label b{ font-size:13px; letter-spacing:.25px; }
-    .label small{
-      display:block;
-      margin-top:4px;
-      font-size:12px;
-      color:var(--muted2);
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      max-width: 100%;
+    .stat .t{
+      margin-top:6px;
+      color: rgba(255,255,255,.78);
+      font-size: 12.5px;
+      letter-spacing:.2px;
     }
 
-    /* Offer section */
-    .offer-head{
+    /* Services */
+    .head{
       display:flex;
       justify-content:space-between;
-      gap:10px;
       align-items:flex-end;
-      padding: 2px 2px 10px;
+      gap:10px;
+      padding-bottom: 10px;
       border-bottom:1px solid rgba(255,255,255,.10);
-      margin-bottom:12px;
+      margin-bottom: 12px;
     }
-    .offer-head .h{
-      font-weight: 900;
+    .head .h{
+      font-weight: 950;
       letter-spacing:.35px;
       font-size: 13px;
+      text-transform: uppercase;
     }
-    .offer-head .sub{
+    .head .sub{
       color: var(--muted2);
       font-size: 12px;
       letter-spacing:.2px;
@@ -316,7 +411,6 @@
 
     .cards{
       display:grid;
-      grid-template-columns: 1fr;
       gap:10px;
     }
     .card{
@@ -334,14 +428,14 @@
       opacity:.9;
       pointer-events:none;
     }
-    .card .t{
+    .card-top{
       position:relative;
       display:flex;
+      align-items:center;
       justify-content:space-between;
       gap:10px;
-      align-items:center;
     }
-    .card .t b{ font-size: 13px; letter-spacing:.25px; }
+    .card-top b{ font-size: 13px; letter-spacing:.25px; }
     .tag{
       font-size:11.5px;
       padding:6px 9px;
@@ -373,27 +467,86 @@
       color: rgba(242,193,78,.90);
     }
 
-    .process{
-      margin-top:12px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      padding-top: 12px;
+    /* FAQ */
+    .faq{
       display:grid;
       gap:10px;
     }
-    .step{
-      border:1px solid rgba(255,255,255,.10);
+    .q{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      overflow:hidden;
+    }
+    .q button{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      text-align:left;
+      padding: 14px 12px;
+    }
+    .q button b{ font-size: 13px; letter-spacing:.15px; }
+    .plus{
+      width:34px; height:34px;
+      border-radius:999px;
+      border:1px solid rgba(242,193,78,.28);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+      position:relative;
+    }
+    .plus::before, .plus::after{
+      content:"";
+      width:14px; height:2px;
+      background: rgba(242,193,78,.95);
+      border-radius:999px;
+      position:absolute;
+    }
+    .plus::after{ transform: rotate(90deg); transition: transform .18s ease; }
+    .a{
+      max-height:0;
+      overflow:hidden;
+      transition: max-height .22s ease;
+      border-top:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+    }
+    .a .pad{
+      padding: 12px;
+      color: rgba(255,255,255,.78);
+      font-size: 12.3px;
+      line-height:1.6;
+    }
+    .q.open .a{ max-height: 240px; }
+    .q.open .plus::after{ transform: rotate(0deg); }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      gap:10px;
+    }
+    .contact a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      transition: transform .18s cubic-bezier(.2,.9,.2,1), background .18s ease, border-color .18s ease;
+    }
+    .contact a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.21); }
+    .ico{
+      width:38px; height:38px;
       border-radius: 14px;
-      padding: 10px 10px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      display:grid; place-items:center;
+      flex:0 0 auto;
     }
-    .step b{ font-size:12.5px; letter-spacing:.2px; }
-    .step small{
-      display:block;
-      margin-top:4px;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height:1.45;
-    }
+    .contact b{ font-size:13px; letter-spacing:.25px; }
+    .contact small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width: 100%; }
 
     .footer{
       margin-top: 12px;
@@ -404,57 +557,101 @@
       letter-spacing:.2px;
     }
 
+    /* Floating quick actions */
+    .fab{
+      position:fixed;
+      right: 16px;
+      bottom: calc(16px + var(--safe-b));
+      z-index:90;
+      display:grid;
+      gap:10px;
+      align-items:end;
+      justify-items:end;
+    }
+    .fab-actions{
+      display:grid;
+      gap:10px;
+      opacity:0;
+      transform: translateY(8px);
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .fab.open .fab-actions{
+      opacity:1;
+      transform: translateY(0);
+      pointer-events:auto;
+    }
+    .fab a, .fab button{
+      width:54px; height:54px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(12,14,20,.88);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.55);
+      display:grid; place-items:center;
+    }
+    .fab-main{
+      border-color: rgba(242,193,78,.34) !important;
+      background: linear-gradient(135deg, rgba(242,193,78,.20), rgba(0,0,0,.10)) !important;
+    }
+    .fab-main span{
+      width:18px; height:2px;
+      background: rgba(242,193,78,.95);
+      border-radius:999px;
+      position:relative;
+      display:block;
+    }
+    .fab-main span::before{
+      content:"";
+      position:absolute;
+      left:50%; top:50%;
+      transform: translate(-50%,-50%) rotate(90deg);
+      width:18px; height:2px;
+      background: rgba(242,193,78,.95);
+      border-radius:999px;
+      transition: transform .18s ease;
+    }
+    .fab.open .fab-main span::before{
+      transform: translate(-50%,-50%) rotate(0deg);
+    }
+
+    /* Reveal animation */
     .reveal{
       opacity:0;
       transform: translateY(12px);
-      animation: in .70s cubic-bezier(.18,.9,.22,1) forwards;
+      transition: opacity .55s cubic-bezier(.18,.9,.22,1), transform .55s cubic-bezier(.18,.9,.22,1);
     }
-    .reveal.d2{ animation-delay: .10s; }
-    .reveal.d3{ animation-delay: .18s; }
-    .reveal.d4{ animation-delay: .26s; }
-    @keyframes in{ to{ opacity:1; transform: translateY(0); } }
-
-    /* MOBILE FIXES */
-    @media (max-width: 430px){
-      .hero{ padding:14px; }
-      .hero-inner{ align-items:flex-start; }
-      .name{ font-size:17px; }
-
-      .champ, .tagline{
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .champ{ -webkit-line-clamp: 2; }
-      .tagline{ -webkit-line-clamp: 2; }
-
-      .proof{ gap:6px; }
-      .chip{ padding:6px 9px; font-size:11.5px; }
-
-      .cta{ flex-direction: column; align-items:flex-start; }
-      .cta .right{ width:100%; justify-content:space-between; }
-      .pill{ padding:7px 10px; }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
     }
 
-    @media (min-width: 680px){
+    /* Responsive */
+    @media (min-width: 860px){
+      .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:14px; align-items:stretch; }
+      .cta{ margin-top:0; align-content:start; }
+      .stats{ grid-template-columns: 1fr 1fr; }
       .cards{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 430px){
+      .hero h1{ font-size: 24px; }
+      .cta-mini{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 
 <body>
   <div class="bg-photo" aria-hidden="true"></div>
-  <div class="bg-overlay" aria-hidden="true"></div>
-  <div class="bg-mask" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
-  <main class="wrap">
-    <section class="hero reveal">
-      <div class="hero-inner">
-        <!-- DARBO outline-only logo -->
-        <div class="logo" aria-label="DARBO logo">
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="logo" aria-hidden="true">
+          <!-- Simple outline logo: DARBO shield -->
           <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
-            <text x="48" y="18"
+            <text x="48" y="20"
                   text-anchor="middle"
                   font-size="14"
                   font-weight="900"
@@ -463,7 +660,6 @@
                   style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;">
               DARBO
             </text>
-
             <path d="M48 26
                      C60 26 70 28 78 31
                      V52
@@ -477,174 +673,333 @@
                   stroke-linejoin="round"/>
           </svg>
         </div>
+        <div class="brand-text">
+          <b id="uiName">DARKO BOJOVSKI</b>
+          <small id="uiChamp">Balkan Overall Juniors Champion</small>
+        </div>
+      </a>
 
-        <div class="title">
-          <h1 class="name" id="name">DARKO BOJOVSKI</h1>
-          <div class="champ" id="champLine">Balkan Overall Juniors Champion</div>
-          <div class="tagline" id="tagline">Coaching • Plans • Transformations</div>
+      <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false">
+        <i aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
 
-          <div class="proof">
+  <!-- Mobile Menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+    <div class="menu-sheet" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="menu-head">
+        <b>Мени</b>
+        <button class="menu-close" id="menuClose" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="menu-links">
+        <a href="#services"><span>Услуги</span><small>Што добиваш</small></a>
+        <a href="#faq"><span>Најчести прашања</span><small>Јасни одговори</small></a>
+        <a href="#contact"><span>Контактирај ме</span><small>WhatsApp / Email</small></a>
+        <a id="menuWhatsApp" href="#"><span>Започни веднаш</span><small>WhatsApp</small></a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap" id="top">
+    <!-- HERO -->
+    <section class="section reveal">
+      <div class="inner hero">
+        <div>
+          <h1 id="name">DARKO BOJOVSKI</h1>
+          <p>
+            <span id="tagline">Coaching • Plans • Transformations</span><br />
+            <span style="color:var(--muted);">Почни со структура. Следи план. Изгради резултат.</span>
+          </p>
+
+          <div class="chips" aria-label="Proof points">
             <div class="chip gold">Champion</div>
             <div class="chip">Coaching</div>
             <div class="chip">Results</div>
+          </div>
+
+          <div class="stats" style="margin-top:14px;">
+            <div class="stat">
+              <div class="n" data-count="100" data-suffix="+">0</div>
+              <div class="t">задоволни клиенти</div>
+            </div>
+            <div class="stat">
+              <div class="n" data-count="24" data-suffix="/7">0</div>
+              <div class="t">поддршка</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta">
+          <a class="cta-primary" id="primaryCta" href="#" target="_blank" rel="noopener">
+            <div>
+              <strong>Започни веднаш (WhatsApp)</strong>
+              <span>Прати: години, висина, тежина, цел, денови/недела + 1 слика.</span>
+            </div>
+            <div class="cta-right">
+              <span class="pill">Sign up</span>
+              <div class="arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <div class="cta-mini">
+            <a class="mini" id="resultsBtn" href="#" target="_blank" rel="noopener">
+              <div>
+                <b>Резултати</b>
+                <small>Трансформации</small>
+              </div>
+              <div aria-hidden="true">→</div>
+            </a>
+            <a class="mini" id="igBtn" href="#" target="_blank" rel="noopener">
+              <div>
+                <b>Instagram</b>
+                <small id="igSub">@d_bojovski</small>
+              </div>
+              <div aria-hidden="true">→</div>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="grid">
-      <!-- Primary CTA -->
-      <section class="panel reveal d2">
-        <a class="cta" id="primaryCta" href="#" target="_blank" rel="noopener">
+    <!-- SERVICES -->
+    <section class="section reveal" id="services">
+      <div class="inner">
+        <div class="head">
           <div>
-            <strong>Start Coaching (WhatsApp)</strong>
-            <span>Message now. I’ll tell you the next step.</span>
+            <div class="h">Услуги</div>
+            <div class="sub">Избери пат. Добиваш план + корекции.</div>
           </div>
-          <div class="right">
-            <span class="pill">Sign up</span>
-            <div class="arrow" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18l6-6-6-6" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
-        </a>
-
-        <div class="cta-row">
-          <a class="mini" id="paypalBtn" href="#" target="_blank" rel="noopener">
-            <div>
-              <b>Support (PayPal)</b>
-              <small id="paypalSub">Set PayPal.Me later</small>
-            </div>
-            <div aria-hidden="true">→</div>
-          </a>
-
-          <a class="mini" id="resultsBtn" href="#" target="_blank" rel="noopener">
-            <div>
-              <b>Results</b>
-              <small>Transformations</small>
-            </div>
-            <div aria-hidden="true">→</div>
-          </a>
+          <div class="sub">DM на WhatsApp</div>
         </div>
-      </section>
 
-      <!-- Links + Offer -->
-      <section class="panel reveal d3">
-        <div class="links">
-          <a class="link" id="ig" href="#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
-              </svg>
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <b>Индивидуални тренинзи</b>
+              <span class="tag">1:1</span>
             </div>
-            <div class="label">
-              <b>Instagram</b>
-              <small id="igSub">@d_bojovski</small>
+            <p>Персонализирани сесии еден-на-еден со максимално внимание и јасна структура.</p>
+            <div class="bullets">
+              <div>Личен тренер (сала или надвор)</div>
+              <div>Целосно прилагодена програма</div>
+              <div>Следење + корекции</div>
             </div>
-          </a>
+          </div>
 
-          <a class="link" id="tt" href="#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M14 3v10.2a3.8 3.8 0 1 1-2-3.4V5.5c2 2.8 4.5 4.3 7 4.5V13c-2.6-.2-4.6-1.2-5-2v6.2a5.8 5.8 0 1 1-2-4.4V3h2Z" fill="rgba(255,255,255,.88)"/>
-              </svg>
+          <div class="card">
+            <div class="card-top">
+              <b>Онлајн коучинг</b>
+              <span class="tag">Online</span>
             </div>
-            <div class="label">
-              <b>TikTok</b>
-              <small id="ttSub">@d_bojovski</small>
+            <p>Професионално водство од далечина со редовни проверки и прилагодување на програмата.</p>
+            <div class="bullets">
+              <div>Персонализирана програма</div>
+              <div>Видео консултации</div>
+              <div>Check-ins + напредок</div>
             </div>
-          </a>
+          </div>
 
-          <a class="link" id="wa" href="#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <div class="card">
+            <div class="card-top">
+              <b>Хибриден пристап</b>
+              <span class="tag">Best of both</span>
+            </div>
+            <p>Комбинација на лични и онлајн сесии за максимална флексибилност и ефикасност.</p>
+            <div class="bullets">
+              <div>Лично + онлајн</div>
+              <div>Прилагоден распоред</div>
+              <div>Вежбање + исхрана</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <b>План (брз старт)</b>
+              <span class="tag">Fast</span>
+            </div>
+            <p>Ако сакаш веднаш да почнеш: јасен план што можеш да го следиш без компликации.</p>
+            <div class="bullets">
+              <div>Тренинг план според цел</div>
+              <div>Едноставни правила за исхрана</div>
+              <div>Проверка и корекција</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section reveal" id="faq">
+      <div class="inner">
+        <div class="head">
+          <div>
+            <div class="h">Најчесто поставувани прашања</div>
+            <div class="sub">Кратко. Директно. Практично.</div>
+          </div>
+        </div>
+
+        <div class="faq" id="faqList">
+          <div class="q">
+            <button type="button">
+              <b>Каков е концептот на тренингот и како функционира?</b>
+              <span class="plus" aria-hidden="true"></span>
+            </button>
+            <div class="a">
+              <div class="pad">
+                Почнуваме со проценка → добиваш план → неделни/двонеделни check-ins → корекции според напредок.
+              </div>
+            </div>
+          </div>
+
+          <div class="q">
+            <button type="button">
+              <b>Дали е соодветно ако никогаш не сум вежбал/а?</b>
+              <span class="plus" aria-hidden="true"></span>
+            </button>
+            <div class="a">
+              <div class="pad">
+                Да. Планот се гради за твоето ниво. Фокус: техника, навика, прогресија без повреди.
+              </div>
+            </div>
+          </div>
+
+          <div class="q">
+            <button type="button">
+              <b>Колку пати неделно се одржуваат тренинзите?</b>
+              <span class="plus" aria-hidden="true"></span>
+            </button>
+            <div class="a">
+              <div class="pad">
+                Најчесто 3–5 дена неделно. Ти кажувам оптимум според целта и распоредот.
+              </div>
+            </div>
+          </div>
+
+          <div class="q">
+            <button type="button">
+              <b>Дали добивам план за исхрана?</b>
+              <span class="plus" aria-hidden="true"></span>
+            </button>
+            <div class="a">
+              <div class="pad">
+                Да. Практичен план (или правила) што реално можеш да го држиш. Без “магични” диети.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section reveal" id="contact">
+      <div class="inner">
+        <div class="head">
+          <div>
+            <div class="h">Контактирај ме</div>
+            <div class="sub">Најбрзо преку WhatsApp.</div>
+          </div>
+        </div>
+
+        <div class="contact">
+          <a id="waLink" href="#" target="_blank" rel="noopener">
+            <div class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M21 12a8.5 8.5 0 0 1-12.8 7.4L3 21l1.7-4.9A8.5 8.5 0 1 1 21 12Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M9 11c1.2 2.3 3.6 3.9 6 4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <div class="label">
+            <div>
               <b>WhatsApp</b>
               <small id="waSub">Message directly</small>
             </div>
           </a>
 
-          <a class="link" id="mail" href="#">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <a id="mailLink" href="#">
+            <div class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
                 <path d="m4 8 8 6 8-6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="label">
+            <div>
               <b>Email</b>
               <small id="mailSub">darko.bojovski@gmail.com</small>
             </div>
           </a>
-        </div>
 
-        <div style="margin-top:12px;">
-          <div class="offer-head">
+          <a id="igLink" href="#" target="_blank" rel="noopener">
+            <div class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+              </svg>
+            </div>
             <div>
-              <div class="h">Work With Me</div>
-              <div class="sub">Choose a path. Get a plan. Follow it.</div>
+              <b>Instagram</b>
+              <small id="igSub2">@d_bojovski</small>
             </div>
-            <div class="sub">DM on WhatsApp</div>
-          </div>
+          </a>
 
-          <div class="cards">
-            <div class="card">
-              <div class="t">
-                <b>1:1 Coaching</b>
-                <span class="tag">Best</span>
-              </div>
-              <p>Full guidance + accountability.</p>
-              <div class="bullets">
-                <div>Training plan</div>
-                <div>Diet plan</div>
-                <div>Check-ins</div>
-              </div>
+          <a id="ttLink" href="#" target="_blank" rel="noopener">
+            <div class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 3v10.2a3.8 3.8 0 1 1-2-3.4V5.5c2 2.8 4.5 4.3 7 4.5V13c-2.6-.2-4.6-1.2-5-2v6.2a5.8 5.8 0 1 1-2-4.4V3h2Z" fill="rgba(255,255,255,.88)"/>
+              </svg>
             </div>
-
-            <div class="card">
-              <div class="t">
-                <b>Online Plan</b>
-                <span class="tag">Fast</span>
-              </div>
-              <p>Clear structure you can follow now.</p>
-              <div class="bullets">
-                <div>Goal-based training</div>
-                <div>Simple nutrition</div>
-                <div>Follow-up check-ups</div>
-              </div>
+            <div>
+              <b>TikTok</b>
+              <small id="ttSub">@d_bojovski</small>
             </div>
-          </div>
-
-          <div class="process">
-            <div class="step">
-              <b>Start in 60 seconds</b>
-              <small>Send: age, height, weight, goal, days/week, and 1 photo. I reply with next steps.</small>
-            </div>
-            <div class="step">
-              <b>How it works</b>
-              <small>WhatsApp → assessment → plan → check-ins + adjustments.</small>
-            </div>
-            <div class="step">
-              <b>Who it’s for</b>
-              <small>Beginners, busy people, lifters who want structure.</small>
-            </div>
-          </div>
+          </a>
         </div>
-      </section>
 
-      <div class="footer reveal d4">
-        Champion-level coaching. Clear steps. Real results.
+        <div class="footer">
+          Champion-level coaching. Clear steps. Real results.
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
+  <!-- Floating quick actions -->
+  <div class="fab" id="fab">
+    <div class="fab-actions" aria-label="Quick actions">
+      <a id="fabIg" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+        </svg>
+      </a>
+      <a id="fabWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12a8.5 8.5 0 0 1-12.8 7.4L3 21l1.7-4.9A8.5 8.5 0 1 1 21 12Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M9 11c1.2 2.3 3.6 3.9 6 4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a id="fabMail" href="#" aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+          <path d="m4 8 8 6 8-6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <button class="fab-main" id="fabMain" aria-label="Open quick actions" aria-expanded="false">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
   <script>
+    // Config seeded from your current index.html (name/champion/tagline + social links). :contentReference[oaicite:1]{index=1}
     const CONFIG = {
       name: "Darko Bojovski",
       champLine: "Balkan Overall Juniors Champion",
@@ -656,35 +1011,143 @@
       whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo.",
       email: "darko.bojovski@gmail.com",
 
-      paypalUrl: "",
-      resultsUrl: "https://www.instagram.com/d_bojovski/"
+      resultsUrl: "https://www.instagram.com/d_bojovski/",
+      igHandle: "@d_bojovski"
     };
 
-    document.getElementById("name").textContent = CONFIG.name;
-    document.getElementById("champLine").textContent = CONFIG.champLine;
+    // Populate UI
+    document.getElementById("uiName").textContent = CONFIG.name.toUpperCase();
+    document.getElementById("uiChamp").textContent = CONFIG.champLine;
+
+    document.getElementById("name").textContent = CONFIG.name.toUpperCase();
     document.getElementById("tagline").textContent = CONFIG.tagline;
 
     document.getElementById("primaryCta").href = CONFIG.whatsappUrl;
-
-    document.getElementById("ig").href = CONFIG.instagramUrl;
-    document.getElementById("tt").href = CONFIG.tiktokUrl;
-    document.getElementById("wa").href = CONFIG.whatsappUrl;
-
-    const mail = document.getElementById("mail");
-    document.getElementById("mailSub").textContent = CONFIG.email;
-    mail.href = "mailto:" + CONFIG.email;
-
     document.getElementById("resultsBtn").href = CONFIG.resultsUrl;
 
-    const paypalBtn = document.getElementById("paypalBtn");
-    const paypalSub = document.getElementById("paypalSub");
-    if (CONFIG.paypalUrl && CONFIG.paypalUrl.startsWith("http")) {
-      paypalBtn.href = CONFIG.paypalUrl;
-      paypalSub.textContent = "Tap to support via PayPal";
-    } else {
-      paypalBtn.href = "https://www.paypal.com/paypalme/";
-      paypalSub.textContent = "Set PayPal.Me later";
-    }
+    const igSubEls = [document.getElementById("igSub"), document.getElementById("igSub2")].filter(Boolean);
+    igSubEls.forEach(el => el.textContent = CONFIG.igHandle);
+
+    document.getElementById("igBtn").href = CONFIG.instagramUrl;
+    document.getElementById("igLink").href = CONFIG.instagramUrl;
+    document.getElementById("ttLink").href = CONFIG.tiktokUrl;
+
+    document.getElementById("waLink").href = CONFIG.whatsappUrl;
+    document.getElementById("waSub").textContent = "Message directly";
+
+    const mailLink = document.getElementById("mailLink");
+    document.getElementById("mailSub").textContent = CONFIG.email;
+    mailLink.href = "mailto:" + CONFIG.email;
+
+    // Menu links
+    document.getElementById("menuWhatsApp").href = CONFIG.whatsappUrl;
+
+    // FAB links
+    document.getElementById("fabIg").href = CONFIG.instagramUrl;
+    document.getElementById("fabWa").href = CONFIG.whatsappUrl;
+    document.getElementById("fabMail").href = "mailto:" + CONFIG.email;
+
+    // Mobile menu behavior
+    const menu = document.getElementById("menu");
+    const hamb = document.getElementById("hamb");
+    const menuClose = document.getElementById("menuClose");
+    const menuBackdrop = document.getElementById("menuBackdrop");
+
+    const openMenu = () => {
+      menu.classList.add("open");
+      menu.setAttribute("aria-hidden", "false");
+      hamb.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+    const closeMenu = () => {
+      menu.classList.remove("open");
+      menu.setAttribute("aria-hidden", "true");
+      hamb.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+
+    hamb.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+    menuBackdrop.addEventListener("click", closeMenu);
+    menu.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) closeMenu();
+    });
+
+    // Smooth scrolling for hash links
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    // FAQ accordion
+    document.getElementById("faqList").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      const item = btn.closest(".q");
+      const isOpen = item.classList.contains("open");
+      [...document.querySelectorAll(".q.open")].forEach(x => x.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if (ent.isIntersecting) ent.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // Animated counters
+    const animateCount = (el) => {
+      const to = Number(el.getAttribute("data-count") || "0");
+      const suffix = el.getAttribute("data-suffix") || "";
+      const dur = 850;
+      const start = performance.now();
+
+      const tick = (t) => {
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const v = Math.round(eased * to);
+        el.textContent = String(v) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const statIO = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if (!ent.isIntersecting) return;
+        const el = ent.target;
+        if (el.dataset.done === "1") return;
+        el.dataset.done = "1";
+        animateCount(el);
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll(".n[data-count]").forEach(el => statIO.observe(el));
+
+    // FAB
+    const fab = document.getElementById("fab");
+    const fabMain = document.getElementById("fabMain");
+    const toggleFab = () => {
+      const open = fab.classList.toggle("open");
+      fabMain.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    fabMain.addEventListener("click", toggleFab);
+    document.addEventListener("click", (e) => {
+      if (!fab.classList.contains("open")) return;
+      if (e.target.closest("#fab")) return;
+      fab.classList.remove("open");
+      fabMain.setAttribute("aria-expanded", "false");
+    });
   </script>
 </body>
 </html>
