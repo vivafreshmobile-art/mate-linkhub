@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="mk">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#090a0e" />
-  <meta name="description" content="Darko Bojovski — Fitness Coach. Structured coaching. Real results. No fluff." />
+  <meta name="description" content="Дарко Бојовски — Фитнес тренер. Структурирано водење. Реални резултати." />
   <title>Darko Bojovski — Coaching</title>
 
   <style>
@@ -25,10 +25,9 @@
 
       --max: 1120px;
       --pad: clamp(16px, 3vw, 28px);
-      --h1: clamp(34px, 4.4vw, 60px);
-      --h2: clamp(22px, 2.5vw, 34px);
-      --h3: clamp(18px, 1.6vw, 22px);
-      --p:  16px;
+      --h1: clamp(30px, 6vw, 58px);
+      --h2: clamp(22px, 3.4vw, 34px);
+      --h3: clamp(18px, 2.6vw, 22px);
     }
 
     *{ box-sizing:border-box; }
@@ -51,42 +50,45 @@
     .nav{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(12px);
-      background: rgba(7,8,12,.55);
+      background: rgba(7,8,12,.72);
       border-bottom:1px solid var(--stroke);
     }
     .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      padding: 12px var(--pad);
+      padding: 10px var(--pad);
       max-width:var(--max); margin:0 auto;
-      gap:14px;
+      gap:12px;
     }
     .brand{
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
     .brand img{
-      width:46px; height:46px; object-fit:contain;
+      width:44px; height:44px; object-fit:contain;
       border-radius:12px;
       background: rgba(255,255,255,.04);
       border:1px solid var(--stroke);
       padding:6px;
     }
-    .brand b{ letter-spacing:.6px; }
-    .brand small{ display:block; color:var(--muted); font-weight:500; margin-top:2px; }
+    .brand b{ letter-spacing:.4px; }
+    .brand small{ display:block; color:var(--muted); font-weight:600; margin-top:2px; }
+
     .nav-links{
-      display:flex; gap:16px; align-items:center;
+      display:flex; gap:14px; align-items:center;
     }
     .nav-links a{
       color:var(--muted);
-      font-weight:600;
+      font-weight:700;
       font-size:14px;
       padding:10px 10px;
       border-radius:12px;
       transition: .18s ease;
+      white-space:nowrap;
     }
     .nav-links a:hover{ color:var(--ink); background: rgba(255,255,255,.05); }
+
     .cta{
-      display:flex; gap:10px; align-items:center;
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -96,11 +98,12 @@
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.05);
       color:var(--ink);
-      font-weight:700;
+      font-weight:800;
       font-size:14px;
       letter-spacing:.2px;
       transition: .18s ease;
       user-select:none;
+      line-height:1;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.075); }
     .btn-primary{
@@ -111,12 +114,35 @@
     .btn-primary:hover{
       box-shadow: 0 14px 38px rgba(242,193,78,.14);
     }
+    .btn-ghost{
+      background: rgba(0,0,0,.18);
+    }
 
     .hamburger{ display:none; }
-    @media (max-width: 860px){
+    .lang{
+      display:inline-flex;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      overflow:hidden;
+    }
+    .lang button{
+      border:0;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .lang button.active{
+      background: rgba(242,193,78,.14);
+      color: rgba(255,255,255,.92);
+    }
+
+    @media (max-width: 980px){
       .nav-links{ display:none; }
       .hamburger{ display:inline-flex; }
-      .brand{ min-width: auto; }
+      .brand{ min-width:auto; }
     }
 
     /* Mobile drawer */
@@ -143,20 +169,17 @@
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
       color:var(--ink);
-      font-weight:700;
+      font-weight:900;
     }
 
     /* Hero */
-    .hero{
-      position:relative;
-      padding: 26px 0 26px;
-    }
+    .hero{ padding: 18px 0 18px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.06fr .94fr;
-      gap: 18px;
+      gap: 16px;
       align-items:stretch;
-      padding: 22px 0 8px;
+      padding: 14px 0 8px;
     }
     @media (max-width: 980px){
       .hero-grid{ grid-template-columns: 1fr; }
@@ -175,23 +198,24 @@
       position:absolute; inset:0;
       background-image:
         linear-gradient(120deg, rgba(7,8,12,.92), rgba(7,8,12,.58) 52%, rgba(7,8,12,.88)),
-        url("assets/photo4.PNG");
+        url("photo4.png");
       background-size: cover;
       background-position: center top;
-      filter: saturate(1.06) contrast(1.06);
       transform: scale(1.02);
     }
     .hero-left .inner{
       position:relative;
-      padding: clamp(22px, 3.6vw, 36px);
+      padding: clamp(18px, 3.6vw, 34px);
       display:flex; flex-direction:column; justify-content:space-between;
       min-height: 520px;
+      gap: 18px;
     }
+
     .kicker{
       display:inline-flex; gap:8px; align-items:center;
       color: var(--muted);
-      font-weight:800;
-      letter-spacing:.28em;
+      font-weight:900;
+      letter-spacing:.24em;
       font-size: 12px;
       text-transform:uppercase;
     }
@@ -201,7 +225,7 @@
       box-shadow: 0 0 0 6px rgba(242,193,78,.10);
     }
     h1{
-      margin: 14px 0 8px;
+      margin: 10px 0 8px;
       font-size: var(--h1);
       line-height: 1.02;
       letter-spacing: -0.02em;
@@ -211,18 +235,18 @@
       color: var(--muted);
       font-size: 16px;
       line-height: 1.55;
-      max-width: 54ch;
+      max-width: 56ch;
     }
 
     .hero-actions{
       display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 18px;
+      margin-top: 14px;
       align-items:center;
     }
 
     .proof{
       display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 16px;
+      margin-top: 12px;
     }
     .chip{
       display:inline-flex; gap:10px; align-items:center;
@@ -231,7 +255,7 @@
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.22);
       color: rgba(255,255,255,.86);
-      font-weight:750;
+      font-weight:850;
       font-size: 13px;
     }
     .chip i{
@@ -247,7 +271,7 @@
     .hero-right{
       display:grid;
       grid-template-rows: 1fr 1fr;
-      gap: 18px;
+      gap: 16px;
     }
     @media (max-width: 980px){
       .hero-right{ grid-template-rows: auto; }
@@ -261,22 +285,18 @@
       overflow:hidden;
       position:relative;
     }
-    .card .top{
-      padding: 18px 18px 0;
-      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+    .mini{
+      font-size:12px; color: var(--muted2); font-weight:800;
+      letter-spacing:.16em; text-transform:uppercase;
     }
     .card h3{ margin:0; font-size: var(--h3); letter-spacing:-.01em; }
     .card p{ margin: 8px 0 0; color: var(--muted); line-height:1.5; }
-    .mini{
-      font-size:12px; color: var(--muted2); font-weight:700;
-      letter-spacing:.16em; text-transform:uppercase;
-    }
 
     .poster{
       min-height: 240px;
       background-image:
         linear-gradient(180deg, rgba(7,8,12,.25), rgba(7,8,12,.92)),
-        url("assets/photo2.PNG");
+        url("photo2.png");
       background-size: cover;
       background-position: center;
     }
@@ -292,11 +312,26 @@
       min-height: 240px;
     }
 
-    .stack{
-      padding: 18px;
+    .stack{ padding: 18px; }
+    .top{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+      padding-bottom: 8px;
+    }
+    .tag{
+      flex:0 0 auto;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(242,193,78,.28);
+      background: rgba(242,193,78,.08);
+      color: rgba(255,255,255,.88);
+      font-weight:900;
+      font-size: 12px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      white-space:nowrap;
     }
     .grid2{
-      margin-top: 14px;
+      margin-top: 12px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -310,15 +345,15 @@
       border-radius: 18px;
       padding: 14px 14px;
     }
-    .stat b{ display:block; font-size:18px; letter-spacing:-.02em; }
-    .stat span{ display:block; margin-top:4px; color:var(--muted); font-weight:600; font-size:13px; line-height:1.35; }
+    .stat b{ display:block; font-size:16px; letter-spacing:-.02em; }
+    .stat span{ display:block; margin-top:4px; color:var(--muted); font-weight:650; font-size:13px; line-height:1.35; }
 
-    /* Section base */
-    section{ padding: 42px 0; }
+    /* Sections */
+    section{ padding: 34px 0; }
     .section-head{
       display:flex; justify-content:space-between; align-items:flex-end;
       gap: 18px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .section-head h2{
       margin:0;
@@ -329,7 +364,7 @@
       margin:0;
       color: var(--muted);
       line-height: 1.55;
-      max-width: 60ch;
+      max-width: 62ch;
     }
     @media (max-width: 820px){
       .section-head{ flex-direction:column; align-items:flex-start; }
@@ -340,7 +375,7 @@
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
     @media (max-width: 980px){ .pillars{ grid-template-columns: 1fr 1fr; } }
     @media (max-width: 520px){ .pillars{ grid-template-columns: 1fr; } }
@@ -367,8 +402,8 @@
     .services{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      margin-top: 18px;
+      gap: 16px;
+      margin-top: 16px;
     }
     @media (max-width: 980px){ .services{ grid-template-columns: 1fr; } }
     .service-list{
@@ -386,31 +421,19 @@
     .service-list .row:first-child{ border-top: 0; padding-top: 6px; }
     .service-list .row b{ display:block; font-size: 16px; }
     .service-list .row span{ display:block; color: var(--muted); margin-top: 6px; line-height: 1.45; }
-    .tag{
-      flex:0 0 auto;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(242,193,78,.28);
-      background: rgba(242,193,78,.08);
-      color: rgba(255,255,255,.88);
-      font-weight:800;
-      font-size: 12px;
-      letter-spacing:.08em;
-      text-transform: uppercase;
-      white-space:nowrap;
-    }
+
     .service-side{
       border-radius: var(--radius2);
       border:1px solid var(--stroke);
       overflow:hidden;
       background:
         linear-gradient(180deg, rgba(7,8,12,.10), rgba(7,8,12,.92)),
-        url("assets/photo6.PNG");
+        url("photo6.png");
       background-size: cover;
       background-position: center;
       box-shadow: var(--shadow);
       position:relative;
-      min-height: 360px;
+      min-height: 340px;
       display:flex;
     }
     .service-side .inside{
@@ -418,23 +441,15 @@
       display:flex; flex-direction:column; justify-content:flex-end;
       width:100%;
     }
-    .service-side .inside b{
-      font-size: 18px;
-      letter-spacing:-.01em;
-    }
-    .service-side .inside p{
-      margin:8px 0 0;
-      color: var(--muted);
-      line-height:1.5;
-    }
-    .service-side .inside .hero-actions{ margin-top: 12px; }
+    .service-side .inside b{ font-size: 18px; letter-spacing:-.01em; }
+    .service-side .inside p{ margin:8px 0 0; color: var(--muted); line-height:1.5; }
 
     /* Gallery */
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
     .shot{
       border-radius: 18px;
@@ -461,10 +476,10 @@
       background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.55));
       opacity:.6;
       transition: .22s ease;
+      pointer-events:none;
     }
     .shot:hover:after{ opacity:.85; }
 
-    /* Spans */
     .g1{ grid-column: span 7; grid-row: span 2; min-height: 320px; }
     .g2{ grid-column: span 5; grid-row: span 1; min-height: 154px; }
     .g3{ grid-column: span 5; grid-row: span 1; min-height: 154px; }
@@ -475,13 +490,17 @@
     @media (max-width: 980px){
       .gallery{ grid-template-columns: repeat(6, 1fr); }
       .g1{ grid-column: span 6; }
-      .g2,.g3{ grid-column: span 6; }
-      .g4,.g5,.g6{ grid-column: span 6; min-height: 220px; }
+      .g2,.g3,.g4,.g5,.g6{ grid-column: span 6; }
+      .g2,.g3{ min-height: 210px; }
+    }
+    @media (max-width: 520px){
+      .shot{ min-height: 200px; }
+      .g1{ min-height: 280px; }
     }
 
     /* FAQ */
     .faq{
-      margin-top: 18px;
+      margin-top: 16px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -495,7 +514,7 @@
     }
     summary{
       cursor:pointer;
-      font-weight:800;
+      font-weight:900;
       color: var(--ink);
       list-style:none;
     }
@@ -506,8 +525,8 @@
     .contact{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
+      gap: 16px;
+      margin-top: 16px;
     }
     @media (max-width: 980px){ .contact{ grid-template-columns: 1fr; } }
     .contact-card{
@@ -527,11 +546,10 @@
     }
     .contact-card .content{ position:relative; }
     .contact-card p{ color: var(--muted); line-height:1.55; margin: 8px 0 0; }
-    .contact-card .hero-actions{ margin-top: 12px; }
 
     /* Footer */
     footer{
-      padding: 22px 0 40px;
+      padding: 18px 0 34px;
       border-top: 1px solid var(--stroke);
       color: var(--muted);
     }
@@ -540,7 +558,7 @@
       justify-content:space-between;
       align-items:center;
     }
-    .foot a{ color: rgba(255,255,255,.82); font-weight:800; }
+    .foot a{ color: rgba(255,255,255,.82); font-weight:900; }
     .foot a:hover{ color: var(--gold2); }
 
     /* Lightbox */
@@ -551,12 +569,12 @@
       align-items:center;
       justify-content:center;
       z-index: 80;
-      padding: 18px;
+      padding: 12px;
     }
     .lightbox.open{ display:flex; }
     .lb-inner{
       width: min(1080px, 96vw);
-      max-height: 90vh;
+      max-height: 92vh;
       border-radius: 20px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(11,13,18,.92);
@@ -592,13 +610,35 @@
     }
     .lb-img img{
       width:100%;
-      height: calc(90vh - 56px);
+      height: calc(92vh - 56px);
       object-fit: contain;
       display:block;
-      background: rgba(0,0,0,.0);
     }
 
-    /* small utility */
+    /* Mobile tightening + sticky CTA */
+    @media (max-width: 520px){
+      .hero-left{ min-height: 520px; }
+      .hero-left .inner{ min-height: 520px; }
+      .hero-actions .btn{ width:100%; justify-content:center; }
+      .cta .btn{ padding: 10px 12px; }
+      .brand small{ display:none; }
+      .btn{ border-radius: 16px; }
+
+      .sticky-cta{
+        position:fixed;
+        left:0; right:0; bottom:0;
+        background: rgba(7,8,12,.82);
+        border-top: 1px solid rgba(255,255,255,.12);
+        backdrop-filter: blur(10px);
+        padding: 10px 12px;
+        display:flex;
+        gap:10px;
+        z-index: 90;
+      }
+      .sticky-cta a{ flex:1; }
+      body{ padding-bottom: 70px; }
+    }
+
     .muted{ color: var(--muted); }
     .gold{ color: var(--gold2); }
   </style>
@@ -610,25 +650,25 @@
     <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="close-row">
         <div class="brand" style="gap:10px">
-          <img src="assets/Logo.PNG" alt="Darbo logo" />
+          <img src="logo.png" alt="Darbo logo" />
           <div>
             <b>Darko Bojovski</b>
-            <small>Coaching</small>
+            <small data-i18n="nav_role">Fitness Coach</small>
           </div>
         </div>
         <button class="lb-btn" id="drawerClose" type="button" aria-label="Close menu">✕</button>
       </div>
 
       <div class="panel-links">
-        <a href="#method">Method</a>
-        <a href="#services">Coaching</a>
-        <a href="#gallery">Photos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Start</a>
+        <a href="#method" data-i18n="nav_method">Method</a>
+        <a href="#services" data-i18n="nav_coaching">Coaching</a>
+        <a href="#gallery" data-i18n="nav_photos">Photos</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#contact" data-i18n="nav_start">Start</a>
       </div>
 
       <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="cta_whatsapp">WhatsApp</a>
         <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
       </div>
@@ -639,25 +679,29 @@
   <header class="nav">
     <div class="nav-inner">
       <a class="brand" href="#top" aria-label="Home">
-        <img src="assets/Logo.PNG" alt="Darbo logo" />
+        <img src="logo.png" alt="Darbo logo" />
         <div>
           <b>Darko Bojovski</b>
-          <small>Fitness Coach</small>
+          <small data-i18n="nav_role">Fitness Coach</small>
         </div>
       </a>
 
       <nav class="nav-links" aria-label="Primary">
-        <a href="#method">Method</a>
-        <a href="#services">Coaching</a>
-        <a href="#gallery">Photos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Start</a>
+        <a href="#method" data-i18n="nav_method">Method</a>
+        <a href="#services" data-i18n="nav_coaching">Coaching</a>
+        <a href="#gallery" data-i18n="nav_photos">Photos</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#contact" data-i18n="nav_start">Start</a>
       </nav>
 
       <div class="cta">
-        <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">IG</a>
-        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Start on WhatsApp</a>
-        <button class="btn hamburger" id="drawerOpen" type="button" aria-label="Open menu">Menu</button>
+        <div class="lang" aria-label="Language">
+          <button id="langMK" type="button">MK</button>
+          <button id="langEN" type="button">EN</button>
+        </div>
+        <a class="btn btn-ghost" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">IG</a>
+        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="cta_start">Start on WhatsApp</a>
+        <button class="btn hamburger" id="drawerOpen" type="button" aria-label="Open menu" data-i18n="nav_menu">Menu</button>
       </div>
     </div>
   </header>
@@ -670,29 +714,29 @@
           <div class="bg" aria-hidden="true"></div>
           <div class="inner">
             <div>
-              <div class="kicker"><span class="dot"></span> structured coaching • real results</div>
-              <h1>Build a physique that holds under pressure.</h1>
-              <p class="sub">
-                No random workouts. No guessing with food. You get a plan, tracking, and accountability that forces progress.
+              <div class="kicker"><span class="dot"></span> <span data-i18n="hero_kicker">структурирано водење • реални резултати</span></div>
+              <h1 data-i18n="hero_h1">Изгради физика што држи под притисок.</h1>
+              <p class="sub" data-i18n="hero_sub">
+                Нема случајни тренинзи. Нема погодување со исхрана. Добиваш план, следење и одговорност што создава прогрес.
               </p>
 
               <div class="hero-actions">
-                <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Start Coaching (WhatsApp)</a>
-                <a class="btn" href="#services">See Coaching</a>
-                <a class="btn" href="#gallery">View Photos</a>
+                <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="hero_btn1">Започни (WhatsApp)</a>
+                <a class="btn" href="#services" data-i18n="hero_btn2">Пакети</a>
+                <a class="btn" href="#gallery" data-i18n="hero_btn3">Фотографии</a>
               </div>
 
               <div class="proof" aria-label="Proof points">
-                <span class="chip gold"><i></i> Balkan overall juniors champion</span>
-                <span class="chip"><i></i> training + nutrition structure</span>
-                <span class="chip"><i></i> check-ins + plan updates</span>
+                <span class="chip gold"><i></i> <span data-i18n="proof_1">Balkan overall juniors champion</span></span>
+                <span class="chip"><i></i> <span data-i18n="proof_2">тренинг + исхрана структура</span></span>
+                <span class="chip"><i></i> <span data-i18n="proof_3">check-in + ажурирање план</span></span>
               </div>
             </div>
 
             <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-              <div class="muted" style="font-weight:700;">@d_bojovski</div>
+              <div class="muted" style="font-weight:800;">@d_bojovski</div>
               <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn" href="mailto:darko.bojovski@gmail.com">Email</a>
+                <a class="btn" href="mailto:darko.bojovski@gmail.com" data-i18n="btn_email">Email</a>
                 <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
               </div>
             </div>
@@ -703,12 +747,12 @@
           <div class="card poster" aria-label="Poster card">
             <div class="overlay" aria-hidden="true"></div>
             <div class="content">
-              <div class="mini">Coaching is a system</div>
-              <h3 style="margin:8px 0 0;">You don’t need motivation. You need a plan that removes excuses.</h3>
-              <p>Message now. Get evaluated. Start executing this week.</p>
+              <div class="mini" data-i18n="poster_kicker">ВОДЕЊЕТО Е СИСТЕМ</div>
+              <h3 style="margin:8px 0 0;" data-i18n="poster_h">Не ти треба мотивација. Ти треба план што ги сече изговорите.</h3>
+              <p data-i18n="poster_p">Пиши сега. Добиваш проценка. Почнуваш со работа оваа недела.</p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#contact">Start</a>
-                <a class="btn" href="#method">How it works</a>
+                <a class="btn btn-primary" href="#contact" data-i18n="poster_btn1">Старт</a>
+                <a class="btn" href="#method" data-i18n="poster_btn2">Како работи</a>
               </div>
             </div>
           </div>
@@ -716,29 +760,29 @@
           <div class="card stack" aria-label="Stats card">
             <div class="top">
               <div>
-                <div class="mini">What you get</div>
-                <h3>Weekly structure that forces progress</h3>
-                <p>Training plan + nutrition targets + accountability. You execute. I adjust.</p>
+                <div class="mini" data-i18n="stats_kicker">ШТО ДОБИВАШ</div>
+                <h3 data-i18n="stats_h">Неделна структура што форсира прогрес</h3>
+                <p data-i18n="stats_p">План за тренинг + таргети за исхрана + одговорност. Ти извршуваш. Јас коригирам.</p>
               </div>
-              <div class="tag">NO FLUFF</div>
+              <div class="tag" data-i18n="stats_tag">NO FLUFF</div>
             </div>
 
             <div class="grid2">
               <div class="stat">
-                <b>Training plan</b>
-                <span>Built around your level, schedule, and recovery.</span>
+                <b data-i18n="stat1_b">План за тренинг</b>
+                <span data-i18n="stat1_s">Според твоето ниво, распоред и опоравување.</span>
               </div>
               <div class="stat">
-                <b>Nutrition targets</b>
-                <span>Simple tracking and realistic meal structure.</span>
+                <b data-i18n="stat2_b">Таргети за исхрана</b>
+                <span data-i18n="stat2_s">Едноставно следење и реална структура на оброци.</span>
               </div>
               <div class="stat">
-                <b>Check-ins</b>
-                <span>Progress review + corrections, consistently.</span>
+                <b data-i18n="stat3_b">Check-ins</b>
+                <span data-i18n="stat3_s">Преглед на прогрес + корекции, конзистентно.</span>
               </div>
               <div class="stat">
-                <b>Result focus</b>
-                <span>Strength, shape, discipline. No wasted weeks.</span>
+                <b data-i18n="stat4_b">Фокус на резултат</b>
+                <span data-i18n="stat4_s">Сила, форма, дисциплина. Нема изгубени недели.</span>
               </div>
             </div>
           </div>
@@ -750,43 +794,43 @@
     <section id="method">
       <div class="section-head">
         <div>
-          <div class="mini">Method</div>
-          <h2>Four pillars. One outcome: measurable progress.</h2>
+          <div class="mini" data-i18n="method_kicker">Метод</div>
+          <h2 data-i18n="method_h">4 столба. 1 исход: мерлив прогрес.</h2>
         </div>
-        <p>Most people fail because they improvise. This is the opposite: a repeatable system you can stick to.</p>
+        <p data-i18n="method_p">Повеќето пропаѓаат бидејќи импровизираат. Ова е систем што се повторува и се држи.</p>
       </div>
 
       <div class="pillars">
         <div class="pillar">
-          <b>Training</b>
+          <b data-i18n="p1_b">Тренинг</b>
           <ul>
-            <li>Plan built for your schedule</li>
-            <li>Progressive overload tracked</li>
-            <li>Form cues + execution standards</li>
+            <li data-i18n="p1_1">План според распоред</li>
+            <li data-i18n="p1_2">Следен progressive overload</li>
+            <li data-i18n="p1_3">Техника + стандарди на изведба</li>
           </ul>
         </div>
         <div class="pillar">
-          <b>Nutrition</b>
+          <b data-i18n="p2_b">Исхрана</b>
           <ul>
-            <li>Protein target + calories</li>
-            <li>Simple meal structure</li>
-            <li>Adjustments based on weekly data</li>
+            <li data-i18n="p2_1">Протеин + калории</li>
+            <li data-i18n="p2_2">Едноставна структура на оброци</li>
+            <li data-i18n="p2_3">Корекции според неделни податоци</li>
           </ul>
         </div>
         <div class="pillar">
-          <b>Accountability</b>
+          <b data-i18n="p3_b">Одговорност</b>
           <ul>
-            <li>Weekly check-ins</li>
-            <li>Photos + weight trends</li>
-            <li>Corrections, not excuses</li>
+            <li data-i18n="p3_1">Неделни check-ins</li>
+            <li data-i18n="p3_2">Слики + тренд на тежина</li>
+            <li data-i18n="p3_3">Корекции, не изговори</li>
           </ul>
         </div>
         <div class="pillar">
-          <b>Recovery</b>
+          <b data-i18n="p4_b">Опоравување</b>
           <ul>
-            <li>Sleep and fatigue management</li>
-            <li>Volume/intensity control</li>
-            <li>Sustainability to avoid burnout</li>
+            <li data-i18n="p4_1">Сон + менаџмент на замор</li>
+            <li data-i18n="p4_2">Контрола на волумен/интензитет</li>
+            <li data-i18n="p4_3">Одржливост без прегорување</li>
           </ul>
         </div>
       </div>
@@ -796,62 +840,62 @@
     <section id="services">
       <div class="section-head">
         <div>
-          <div class="mini">Coaching</div>
-          <h2>What I offer</h2>
+          <div class="mini" data-i18n="services_kicker">Coaching</div>
+          <h2 data-i18n="services_h">Што нудам</h2>
         </div>
-        <p>Pick the service based on how much structure you need. If you want real change, don’t choose the “easy” option.</p>
+        <p data-i18n="services_p">Избери според тоа колку структура ти треба. Ако сакаш промена, не бирај “лесно”.</p>
       </div>
 
       <div class="services">
         <div class="service-list" aria-label="Service list">
           <div class="row">
             <div>
-              <b>Personal / Online Coaching</b>
-              <span>Full system: training, nutrition, and check-ins. This is the main package for serious results.</span>
+              <b data-i18n="s1_b">Personal / Online Coaching</b>
+              <span data-i18n="s1_s">Цел систем: тренинг, исхрана и check-ins. Главен пакет за сериозни резултати.</span>
             </div>
-            <div class="tag">BEST</div>
+            <div class="tag" data-i18n="tag_best">BEST</div>
           </div>
 
           <div class="row">
             <div>
-              <b>Training Plan</b>
-              <span>A structured program built for your goal. You execute independently.</span>
+              <b data-i18n="s2_b">Training Plan</b>
+              <span data-i18n="s2_s">Структуриран програм за твојата цел. Ти извршуваш сам.</span>
             </div>
-            <div class="tag">PLAN</div>
+            <div class="tag" data-i18n="tag_plan">PLAN</div>
           </div>
 
           <div class="row">
             <div>
-              <b>Diet Plan</b>
-              <span>Clear nutrition targets and meal structure based on your body and routine.</span>
+              <b data-i18n="s3_b">Diet Plan</b>
+              <span data-i18n="s3_s">Јасни таргети и структура на оброци според твоето тело и рутина.</span>
             </div>
-            <div class="tag">FOOD</div>
+            <div class="tag" data-i18n="tag_food">FOOD</div>
           </div>
 
           <div class="row">
             <div>
-              <b>Lifestyle Evaluation</b>
-              <span>Identify what’s blocking progress: habits, recovery, routine, consistency.</span>
+              <b data-i18n="s4_b">Lifestyle Evaluation</b>
+              <span data-i18n="s4_s">Што те кочи: навики, сон, рутина, конзистентност.</span>
             </div>
-            <div class="tag">AUDIT</div>
+            <div class="tag" data-i18n="tag_audit">AUDIT</div>
           </div>
 
           <div class="row">
             <div>
-              <b>Check-ups</b>
-              <span>Ongoing progress review with adjustments. No drifting, no “hope it works”.</span>
+              <b data-i18n="s5_b">Check-ups</b>
+              <span data-i18n="s5_s">Континуиран преглед и корекции. Нема лутање, нема “ќе видиме”.</span>
             </div>
-            <div class="tag">TRACK</div>
+            <div class="tag" data-i18n="tag_track">TRACK</div>
           </div>
         </div>
 
         <div class="service-side" aria-label="Service image">
           <div class="inside">
-            <b>Start in 60 seconds.</b>
-            <p>Send age, height, weight, goal, and weekly availability. If you can, add a photo.</p>
+            <b data-i18n="side_b">Старт за 60 секунди.</b>
+            <p data-i18n="side_p">Прати: години, висина, тежина, цел и колку дена/недела можеш. Ако можеш, прати и слика.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Message on WhatsApp</a>
-              <a class="btn" href="mailto:darko.bojovski@gmail.com">Email</a>
+              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="side_btn1">WhatsApp</a>
+              <a class="btn" href="mailto:darko.bojovski@gmail.com" data-i18n="btn_email">Email</a>
             </div>
           </div>
         </div>
@@ -862,38 +906,38 @@
     <section id="gallery">
       <div class="section-head">
         <div>
-          <div class="mini">Photos</div>
-          <h2>Proof and presence</h2>
+          <div class="mini" data-i18n="gallery_kicker">Photos</div>
+          <h2 data-i18n="gallery_h">Доказ и присуство</h2>
         </div>
-        <p>Strong visuals matter because they signal standards. Click any photo to open full screen.</p>
+        <p data-i18n="gallery_p">Кликни на било која фотографија за цел екран.</p>
       </div>
 
       <div class="gallery" aria-label="Photo gallery">
-        <div class="shot g1" data-src="assets/photo8.PNG" data-title="Stage / presence">
-          <img src="assets/photo8.PNG" alt="Darko stage photo" loading="lazy" />
+        <div class="shot g1" data-src="photo8.png" data-title="Stage / presence">
+          <img src="photo8.png" alt="Darko stage photo" loading="lazy" />
         </div>
-        <div class="shot g2" data-src="assets/photo4.PNG" data-title="Competition close-up">
-          <img src="assets/photo4.PNG" alt="Darko close-up" loading="lazy" />
+        <div class="shot g2" data-src="photo4.png" data-title="Competition close-up">
+          <img src="photo4.png" alt="Darko close-up" loading="lazy" />
         </div>
-        <div class="shot g3" data-src="assets/photo9.PNG" data-title="With another athlete">
-          <img src="assets/photo9.PNG" alt="Two athletes" loading="lazy" />
-        </div>
-
-        <div class="shot g4" data-src="assets/photo5.PNG" data-title="Lineup">
-          <img src="assets/photo5.PNG" alt="Lineup photo" loading="lazy" />
-        </div>
-        <div class="shot g5" data-src="assets/photo7.PNG" data-title="Back pose">
-          <img src="assets/photo7.PNG" alt="Back pose" loading="lazy" />
-        </div>
-        <div class="shot g6" data-src="assets/photo1.PNG" data-title="Stage pose">
-          <img src="assets/photo1.PNG" alt="Stage pose" loading="lazy" />
+        <div class="shot g3" data-src="photo9.png" data-title="With another athlete">
+          <img src="photo9.png" alt="Two athletes" loading="lazy" />
         </div>
 
-        <div class="shot g2" data-src="assets/photo6.PNG" data-title="Gym moment">
-          <img src="assets/photo6.PNG" alt="Gym photo" loading="lazy" />
+        <div class="shot g4" data-src="photo5.png" data-title="Lineup">
+          <img src="photo5.png" alt="Lineup photo" loading="lazy" />
         </div>
-        <div class="shot g3" data-src="assets/photo3.PNG" data-title="Gym physique">
-          <img src="assets/photo3.PNG" alt="Gym physique" loading="lazy" />
+        <div class="shot g5" data-src="photo7.png" data-title="Back pose">
+          <img src="photo7.png" alt="Back pose" loading="lazy" />
+        </div>
+        <div class="shot g6" data-src="photo1.png" data-title="Stage pose">
+          <img src="photo1.png" alt="Stage pose" loading="lazy" />
+        </div>
+
+        <div class="shot g2" data-src="photo6.png" data-title="Gym moment">
+          <img src="photo6.png" alt="Gym photo" loading="lazy" />
+        </div>
+        <div class="shot g3" data-src="photo3.png" data-title="Gym physique">
+          <img src="photo3.png" alt="Gym physique" loading="lazy" />
         </div>
       </div>
     </section>
@@ -903,15 +947,15 @@
       <div class="section-head">
         <div>
           <div class="mini">Protein Recipes</div>
-          <h2>Coming next</h2>
+          <h2 data-i18n="recipes_h">Следно: рецепти</h2>
         </div>
-        <p>When you send recipes + photos, we’ll add a filterable recipe gallery with macros. This will be the “unique” hook.</p>
+        <p data-i18n="recipes_p">Кога ќе ги пратиш рецептите + сликите, додаваме филтрирачка галерија со макроси.</p>
       </div>
 
       <div class="contact-card">
         <div class="content">
-          <b style="font-size:18px;">Ready for recipes module</b>
-          <p>Send: recipe name, ingredients, steps, calories, protein, and a photo. I’ll plug them into a clean card system.</p>
+          <b style="font-size:18px;" data-i18n="recipes_b">Подготвен модул за рецепти</b>
+          <p data-i18n="recipes_s">Прати: име, состојки, чекори, калории, протеин и слика.</p>
         </div>
       </div>
     </section>
@@ -921,35 +965,35 @@
       <div class="section-head">
         <div>
           <div class="mini">FAQ</div>
-          <h2>Objections, answered</h2>
+          <h2 data-i18n="faq_h">Прашања што блокираат старт</h2>
         </div>
-        <p>This is where most trainer sites lie. We don’t. You’ll get clarity on how it works.</p>
+        <p data-i18n="faq_p">Јасно и директно.</p>
       </div>
 
       <div class="faq" aria-label="FAQ list">
         <details>
-          <summary>How do I start?</summary>
-          <p>Message on WhatsApp. Send age, height, weight, goal, and how many days/week you can train. If possible, add a photo.</p>
+          <summary data-i18n="f1_q">Како започнувам?</summary>
+          <p data-i18n="f1_a">Пиши на WhatsApp. Прати години, висина, тежина, цел и дена/недела. Ако можеш, прати слика.</p>
         </details>
         <details>
-          <summary>Do I need a gym?</summary>
-          <p>Gym is best. If you train at home, I’ll build around what you have. Results depend on execution and consistency.</p>
+          <summary data-i18n="f2_q">Дали мора теретана?</summary>
+          <p data-i18n="f2_a">Теретана е најдобро. Ако си дома, ќе направам план според тоа што имаш. Резултат = извршување.</p>
         </details>
         <details>
-          <summary>Is this for beginners?</summary>
-          <p>Yes. Beginners progress fast if they follow the plan. Advanced athletes need more precision. Both require discipline.</p>
+          <summary data-i18n="f3_q">Дали е за почетници?</summary>
+          <p data-i18n="f3_a">Да. Почетници напредуваат брзо ако следат план. Напредни бараат повеќе прецизност.</p>
         </details>
         <details>
-          <summary>Will I get a strict diet?</summary>
-          <p>No starvation, no fantasy meal plans. You get targets and structure. If you can’t follow it, it’s useless.</p>
+          <summary data-i18n="f4_q">Дали е “строга” диета?</summary>
+          <p data-i18n="f4_a">Не. Ќе добиеш таргети и структура. Ако не можеш да ја следиш, е бескорисна.</p>
         </details>
         <details>
-          <summary>How fast will I see results?</summary>
-          <p>Visible change can happen in weeks, but real transformation is months. Your speed depends on adherence, sleep, and weekly effort.</p>
+          <summary data-i18n="f5_q">Кога ќе се видат резултати?</summary>
+          <p data-i18n="f5_a">Промени се гледаат за недели, трансформација за месеци. Брзина = дисциплина + сон.</p>
         </details>
         <details>
-          <summary>What does accountability look like?</summary>
-          <p>Check-ins. Data. Adjustments. If you disappear, you lose momentum. The system works only when you show up.</p>
+          <summary data-i18n="f6_q">Каква е одговорноста?</summary>
+          <p data-i18n="f6_a">Check-ins, податоци, корекции. Ако исчезнеш — губиш моментум.</p>
         </details>
       </div>
     </section>
@@ -958,19 +1002,19 @@
     <section id="contact">
       <div class="section-head">
         <div>
-          <div class="mini">Start</div>
-          <h2>Stop improvising. Start executing.</h2>
+          <div class="mini" data-i18n="contact_kicker">Start</div>
+          <h2 data-i18n="contact_h">Стоп импровизација. Старт извршување.</h2>
         </div>
-        <p>WhatsApp is the fastest path. Email exists if you prefer slower communication.</p>
+        <p data-i18n="contact_p">WhatsApp е најбрз. Email е опција ако сакаш побавно.</p>
       </div>
 
       <div class="contact" aria-label="Contact options">
         <div class="contact-card">
           <div class="content">
-            <b style="font-size:18px;">WhatsApp (recommended)</b>
-            <p>Copy/paste this structure: Age / Height / Weight / Goal / Days per week. Add a photo if you can.</p>
+            <b style="font-size:18px;" data-i18n="c1_b">WhatsApp (препорачано)</b>
+            <p data-i18n="c1_p">Прати: Години / Висина / Тежина / Цел / Дена неделно. Додади слика ако можеш.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Open WhatsApp</a>
+              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="c1_btn">Отвори WhatsApp</a>
               <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">Instagram</a>
               <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
             </div>
@@ -979,13 +1023,13 @@
 
         <div class="contact-card">
           <div class="content">
-            <b style="font-size:18px;">Email</b>
-            <p>If you email, include the same info as WhatsApp so you don’t waste time going back and forth.</p>
+            <b style="font-size:18px;" data-i18n="c2_b">Email</b>
+            <p data-i18n="c2_p">Ако праќаш email, вклучи ги истите информации како за WhatsApp.</p>
             <div class="hero-actions">
               <a class="btn" href="mailto:darko.bojovski@gmail.com">darko.bojovski@gmail.com</a>
-              <a class="btn" href="#services">Coaching options</a>
+              <a class="btn" href="#services" data-i18n="c2_btn">Пакети</a>
             </div>
-            <p style="margin-top:14px;"><span class="gold">Note:</span> Pricing can be discussed after evaluation. Cheap coaching attracts unserious clients.</p>
+            <p style="margin-top:14px;"><span class="gold">Note:</span> <span data-i18n="c2_note">Цената се договара после проценка. Евтино водење привлекува несериозни клиенти.</span></p>
           </div>
         </div>
       </div>
@@ -1001,6 +1045,12 @@
       </div>
     </footer>
   </main>
+
+  <!-- Sticky CTA (mobile only via CSS) -->
+  <div class="sticky-cta" aria-label="Quick actions">
+    <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener" data-i18n="sticky_whatsapp">WhatsApp</a>
+    <a class="btn" href="#services" data-i18n="sticky_packages">Пакети</a>
+  </div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -1024,107 +1074,319 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Drawer
-const drawer = document.getElementById("drawer");
-const openBtn = document.getElementById("drawerOpen");
-const closeBtn = document.getElementById("drawerClose");
+    const drawer = document.getElementById("drawer");
+    const openBtn = document.getElementById("drawerOpen");
+    const closeBtn = document.getElementById("drawerClose");
 
-function openDrawer(){
-  drawer.classList.add("open");
-  drawer.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-function closeDrawer(){
-  drawer.classList.remove("open");
-  drawer.setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-}
-
-openBtn?.addEventListener("click", openDrawer);
-closeBtn?.addEventListener("click", closeDrawer);
-
-// close drawer when clicking backdrop
-drawer.addEventListener("click", (e) => {
-  if(e.target === drawer) closeDrawer();
-});
-
-// close drawer when clicking any menu link
-drawer.querySelectorAll("a[href^='#']").forEach(a=>{
-  a.addEventListener("click", () => closeDrawer());
-});
-
-// Lightbox
-const shots = Array.from(document.querySelectorAll(".shot"));
-const lightbox = document.getElementById("lightbox");
-const lbImg = document.getElementById("lbImg");
-const lbTitle = document.getElementById("lbTitle");
-const lbClose = document.getElementById("lbClose");
-const lbPrev = document.getElementById("lbPrev");
-const lbNext = document.getElementById("lbNext");
-
-let currentIndex = 0;
-
-function setLightbox(index){
-  currentIndex = (index + shots.length) % shots.length;
-  const el = shots[currentIndex];
-  const src = el.getAttribute("data-src");
-  const title = el.getAttribute("data-title") || "Photo";
-  lbImg.src = src;
-  lbTitle.textContent = title;
-}
-
-function openLightbox(index){
-  setLightbox(index);
-  lightbox.classList.add("open");
-  lightbox.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-
-function closeLightbox(){
-  lightbox.classList.remove("open");
-  lightbox.setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-  // avoid keeping big image in memory on mobile
-  setTimeout(()=>{ if(!lightbox.classList.contains("open")) lbImg.src = ""; }, 120);
-}
-
-shots.forEach((el, idx)=>{
-  el.addEventListener("click", ()=> openLightbox(idx));
-  el.addEventListener("keydown", (e)=>{
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      openLightbox(idx);
+    function openDrawer(){
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
     }
-  });
-  // accessibility: make focusable
-  el.tabIndex = 0;
-  el.setAttribute("role","button");
-  el.setAttribute("aria-label", "Open photo");
-});
+    function closeDrawer(){
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
 
-lbClose.addEventListener("click", closeLightbox);
-lbPrev.addEventListener("click", ()=> setLightbox(currentIndex - 1));
-lbNext.addEventListener("click", ()=> setLightbox(currentIndex + 1));
+    openBtn?.addEventListener("click", openDrawer);
+    closeBtn?.addEventListener("click", closeDrawer);
 
-// close on backdrop click
-lightbox.addEventListener("click", (e)=>{
-  if(e.target === lightbox) closeLightbox();
-});
+    drawer.addEventListener("click", (e) => {
+      if(e.target === drawer) closeDrawer();
+    });
+    drawer.querySelectorAll("a[href^='#']").forEach(a=>{
+      a.addEventListener("click", () => closeDrawer());
+    });
 
-// keyboard controls
-document.addEventListener("keydown", (e)=>{
-  const lbOpen = lightbox.classList.contains("open");
-  const drOpen = drawer.classList.contains("open");
+    // Lightbox
+    const shots = Array.from(document.querySelectorAll(".shot"));
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbTitle = document.getElementById("lbTitle");
+    const lbClose = document.getElementById("lbClose");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+    let currentIndex = 0;
 
-  if(e.key === "Escape"){
-    if(lbOpen) closeLightbox();
-    if(drOpen) closeDrawer();
-  }
+    function setLightbox(index){
+      currentIndex = (index + shots.length) % shots.length;
+      const el = shots[currentIndex];
+      const src = el.getAttribute("data-src");
+      const title = el.getAttribute("data-title") || "Photo";
+      lbImg.src = src;
+      lbTitle.textContent = title;
+    }
 
-  if(lbOpen){
-    if(e.key === "ArrowLeft") setLightbox(currentIndex - 1);
-    if(e.key === "ArrowRight") setLightbox(currentIndex + 1);
-  }
-});
-</script>
+    function openLightbox(index){
+      setLightbox(index);
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      setTimeout(()=>{ if(!lightbox.classList.contains("open")) lbImg.src = ""; }, 120);
+    }
+
+    shots.forEach((el, idx)=>{
+      el.addEventListener("click", ()=> openLightbox(idx));
+      el.addEventListener("keydown", (e)=>{
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          openLightbox(idx);
+        }
+      });
+      el.tabIndex = 0;
+      el.setAttribute("role","button");
+      el.setAttribute("aria-label", "Open photo");
+    });
+
+    lbClose.addEventListener("click", closeLightbox);
+    lbPrev.addEventListener("click", ()=> setLightbox(currentIndex - 1));
+    lbNext.addEventListener("click", ()=> setLightbox(currentIndex + 1));
+
+    lightbox.addEventListener("click", (e)=>{
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e)=>{
+      const lbOpen = lightbox.classList.contains("open");
+      const drOpen = drawer.classList.contains("open");
+
+      if(e.key === "Escape"){
+        if(lbOpen) closeLightbox();
+        if(drOpen) closeDrawer();
+      }
+      if(lbOpen){
+        if(e.key === "ArrowLeft") setLightbox(currentIndex - 1);
+        if(e.key === "ArrowRight") setLightbox(currentIndex + 1);
+      }
+    });
+
+    // i18n
+    const dict = {
+      mk: {
+        nav_role: "Фитнес тренер",
+        nav_method: "Метод",
+        nav_coaching: "Коучинг",
+        nav_photos: "Фотографии",
+        nav_faq: "FAQ",
+        nav_start: "Старт",
+        nav_menu: "Мени",
+        cta_start: "Старт на WhatsApp",
+        cta_whatsapp: "WhatsApp",
+
+        hero_kicker: "структурирано водење • реални резултати",
+        hero_h1: "Изгради физика што држи под притисок.",
+        hero_sub: "Нема случајни тренинзи. Нема погодување со исхрана. Добиваш план, следење и одговорност што создава прогрес.",
+        hero_btn1: "Започни (WhatsApp)",
+        hero_btn2: "Пакети",
+        hero_btn3: "Фотографии",
+
+        proof_1: "Balkan overall juniors champion",
+        proof_2: "тренинг + исхрана структура",
+        proof_3: "check-in + ажурирање план",
+
+        btn_email: "Email",
+
+        poster_kicker: "ВОДЕЊЕТО Е СИСТЕМ",
+        poster_h: "Не ти треба мотивација. Ти треба план што ги сече изговорите.",
+        poster_p: "Пиши сега. Добиваш проценка. Почнуваш со работа оваа недела.",
+        poster_btn1: "Старт",
+        poster_btn2: "Како работи",
+
+        stats_kicker: "ШТО ДОБИВАШ",
+        stats_h: "Неделна структура што форсира прогрес",
+        stats_p: "План за тренинг + таргети за исхрана + одговорност. Ти извршуваш. Јас коригирам.",
+        stats_tag: "NO FLUFF",
+        stat1_b: "План за тренинг",
+        stat1_s: "Според твоето ниво, распоред и опоравување.",
+        stat2_b: "Таргети за исхрана",
+        stat2_s: "Едноставно следење и реална структура на оброци.",
+        stat3_b: "Check-ins",
+        stat3_s: "Преглед на прогрес + корекции, конзистентно.",
+        stat4_b: "Фокус на резултат",
+        stat4_s: "Сила, форма, дисциплина. Нема изгубени недели.",
+
+        method_kicker: "Метод",
+        method_h: "4 столба. 1 исход: мерлив прогрес.",
+        method_p: "Повеќето пропаѓаат бидејќи импровизираат. Ова е систем што се повторува и се држи.",
+        p1_b:"Тренинг", p1_1:"План според распоред", p1_2:"Следен progressive overload", p1_3:"Техника + стандарди на изведба",
+        p2_b:"Исхрана", p2_1:"Протеин + калории", p2_2:"Едноставна структура на оброци", p2_3:"Корекции според неделни податоци",
+        p3_b:"Одговорност", p3_1:"Неделни check-ins", p3_2:"Слики + тренд на тежина", p3_3:"Корекции, не изговори",
+        p4_b:"Опоравување", p4_1:"Сон + менаџмент на замор", p4_2:"Контрола на волумен/интензитет", p4_3:"Одржливост без прегорување",
+
+        services_kicker:"Coaching",
+        services_h:"Што нудам",
+        services_p:"Избери според тоа колку структура ти треба. Ако сакаш промена, не бирај “лесно”.",
+        s1_b:"Personal / Online Coaching", s1_s:"Цел систем: тренинг, исхрана и check-ins. Главен пакет за сериозни резултати.",
+        s2_b:"Training Plan", s2_s:"Структуриран програм за твојата цел. Ти извршуваш сам.",
+        s3_b:"Diet Plan", s3_s:"Јасни таргети и структура на оброци според твоето тело и рутина.",
+        s4_b:"Lifestyle Evaluation", s4_s:"Што те кочи: навики, сон, рутина, конзистентност.",
+        s5_b:"Check-ups", s5_s:"Континуиран преглед и корекции. Нема лутање, нема “ќе видиме”.",
+        tag_best:"BEST", tag_plan:"PLAN", tag_food:"FOOD", tag_audit:"AUDIT", tag_track:"TRACK",
+        side_b:"Старт за 60 секунди.",
+        side_p:"Прати: години, висина, тежина, цел и колку дена/недела можеш. Ако можеш, прати и слика.",
+        side_btn1:"WhatsApp",
+
+        gallery_kicker:"Photos",
+        gallery_h:"Доказ и присуство",
+        gallery_p:"Кликни на било која фотографија за цел екран.",
+
+        recipes_h:"Следно: рецепти",
+        recipes_p:"Кога ќе ги пратиш рецептите + сликите, додаваме филтрирачка галерија со макроси.",
+        recipes_b:"Подготвен модул за рецепти",
+        recipes_s:"Прати: име, состојки, чекори, калории, протеин и слика.",
+
+        faq_h:"Прашања што блокираат старт",
+        faq_p:"Јасно и директно.",
+        f1_q:"Како започнувам?", f1_a:"Пиши на WhatsApp. Прати години, висина, тежина, цел и дена/недела. Ако можеш, прати слика.",
+        f2_q:"Дали мора теретана?", f2_a:"Теретана е најдобро. Ако си дома, ќе направам план според тоа што имаш. Резултат = извршување.",
+        f3_q:"Дали е за почетници?", f3_a:"Да. Почетници напредуваат брзо ако следат план. Напредни бараат повеќе прецизност.",
+        f4_q:"Дали е “строга” диета?", f4_a:"Не. Ќе добиеш таргети и структура. Ако не можеш да ја следиш, е бескорисна.",
+        f5_q:"Кога ќе се видат резултати?", f5_a:"Промени се гледаат за недели, трансформација за месеци. Брзина = дисциплина + сон.",
+        f6_q:"Каква е одговорноста?", f6_a:"Check-ins, податоци, корекции. Ако исчезнеш — губиш моментум.",
+
+        contact_kicker:"Старт",
+        contact_h:"Стоп импровизација. Старт извршување.",
+        contact_p:"WhatsApp е најбрз. Email е опција ако сакаш побавно.",
+        c1_b:"WhatsApp (препорачано)",
+        c1_p:"Прати: Години / Висина / Тежина / Цел / Дена неделно. Додади слика ако можеш.",
+        c1_btn:"Отвори WhatsApp",
+        c2_b:"Email",
+        c2_p:"Ако праќаш email, вклучи ги истите информации како за WhatsApp.",
+        c2_btn:"Пакети",
+        c2_note:"Цената се договара после проценка. Евтино водење привлекува несериозни клиенти.",
+
+        sticky_whatsapp:"WhatsApp",
+        sticky_packages:"Пакети",
+      },
+
+      en: {
+        nav_role: "Fitness Coach",
+        nav_method: "Method",
+        nav_coaching: "Coaching",
+        nav_photos: "Photos",
+        nav_faq: "FAQ",
+        nav_start: "Start",
+        nav_menu: "Menu",
+        cta_start: "Start on WhatsApp",
+        cta_whatsapp: "WhatsApp",
+
+        hero_kicker: "structured coaching • real results",
+        hero_h1: "Build a physique that holds under pressure.",
+        hero_sub: "No random workouts. No guessing with food. You get a plan, tracking, and accountability that forces progress.",
+        hero_btn1: "Start (WhatsApp)",
+        hero_btn2: "Packages",
+        hero_btn3: "Photos",
+
+        proof_1: "Balkan overall juniors champion",
+        proof_2: "training + nutrition structure",
+        proof_3: "check-ins + plan updates",
+
+        btn_email: "Email",
+
+        poster_kicker: "COACHING IS A SYSTEM",
+        poster_h: "You don’t need motivation. You need a plan that removes excuses.",
+        poster_p: "Message now. Get evaluated. Start executing this week.",
+        poster_btn1: "Start",
+        poster_btn2: "How it works",
+
+        stats_kicker: "WHAT YOU GET",
+        stats_h: "Weekly structure that forces progress",
+        stats_p: "Training plan + nutrition targets + accountability. You execute. I adjust.",
+        stats_tag: "NO FLUFF",
+        stat1_b: "Training plan",
+        stat1_s: "Built around your level, schedule, and recovery.",
+        stat2_b: "Nutrition targets",
+        stat2_s: "Simple tracking and realistic meal structure.",
+        stat3_b: "Check-ins",
+        stat3_s: "Progress review + corrections, consistently.",
+        stat4_b: "Result focus",
+        stat4_s: "Strength, shape, discipline. No wasted weeks.",
+
+        method_kicker: "Method",
+        method_h: "Four pillars. One outcome: measurable progress.",
+        method_p: "Most people fail because they improvise. This is a repeatable system you can stick to.",
+        p1_b:"Training", p1_1:"Plan built for your schedule", p1_2:"Progressive overload tracked", p1_3:"Form cues + execution standards",
+        p2_b:"Nutrition", p2_1:"Protein target + calories", p2_2:"Simple meal structure", p2_3:"Adjustments based on weekly data",
+        p3_b:"Accountability", p3_1:"Weekly check-ins", p3_2:"Photos + weight trends", p3_3:"Corrections, not excuses",
+        p4_b:"Recovery", p4_1:"Sleep and fatigue management", p4_2:"Volume/intensity control", p4_3:"Sustainability to avoid burnout",
+
+        services_kicker:"Coaching",
+        services_h:"What I offer",
+        services_p:"Pick based on how much structure you need. If you want real change, don’t choose the easy option.",
+        s1_b:"Personal / Online Coaching", s1_s:"Full system: training, nutrition, and check-ins. This is the main package for serious results.",
+        s2_b:"Training Plan", s2_s:"A structured program built for your goal. You execute independently.",
+        s3_b:"Diet Plan", s3_s:"Clear nutrition targets and meal structure based on your body and routine.",
+        s4_b:"Lifestyle Evaluation", s4_s:"Identify what’s blocking progress: habits, recovery, routine, consistency.",
+        s5_b:"Check-ups", s5_s:"Ongoing progress review with adjustments. No drifting, no hope-based training.",
+        tag_best:"BEST", tag_plan:"PLAN", tag_food:"FOOD", tag_audit:"AUDIT", tag_track:"TRACK",
+        side_b:"Start in 60 seconds.",
+        side_p:"Send age, height, weight, goal, and weekly availability. If you can, add a photo.",
+        side_btn1:"WhatsApp",
+
+        gallery_kicker:"Photos",
+        gallery_h:"Proof and presence",
+        gallery_p:"Click any photo to open full screen.",
+
+        recipes_h:"Coming next: recipes",
+        recipes_p:"When you send recipes + photos, we’ll add a filterable gallery with macros.",
+        recipes_b:"Ready for recipes module",
+        recipes_s:"Send: name, ingredients, steps, calories, protein, and a photo.",
+
+        faq_h:"Objections, answered",
+        faq_p:"Clear and direct.",
+        f1_q:"How do I start?", f1_a:"Message on WhatsApp. Send age, height, weight, goal, and days/week. Add a photo if possible.",
+        f2_q:"Do I need a gym?", f2_a:"Gym is best. If you train at home, I’ll build around what you have. Results depend on execution.",
+        f3_q:"Is this for beginners?", f3_a:"Yes. Beginners progress fast with a plan. Advanced athletes need more precision.",
+        f4_q:"Will I get a strict diet?", f4_a:"No starvation. You get targets and structure. If you can’t follow it, it’s useless.",
+        f5_q:"How fast will I see results?", f5_a:"Visible change in weeks, real transformation in months. Speed = adherence + sleep.",
+        f6_q:"What does accountability look like?", f6_a:"Check-ins, data, adjustments. If you disappear, you lose momentum.",
+
+        contact_kicker:"Start",
+        contact_h:"Stop improvising. Start executing.",
+        contact_p:"WhatsApp is the fastest path. Email exists if you prefer slower communication.",
+        c1_b:"WhatsApp (recommended)",
+        c1_p:"Copy/paste: Age / Height / Weight / Goal / Days per week. Add a photo if you can.",
+        c1_btn:"Open WhatsApp",
+        c2_b:"Email",
+        c2_p:"If you email, include the same info as WhatsApp to avoid back-and-forth.",
+        c2_btn:"Packages",
+        c2_note:"Pricing can be discussed after evaluation. Cheap coaching attracts unserious clients.",
+
+        sticky_whatsapp:"WhatsApp",
+        sticky_packages:"Packages",
+      }
+    };
+
+    const langMK = document.getElementById("langMK");
+    const langEN = document.getElementById("langEN");
+    const root = document.documentElement;
+
+    function applyLang(lang){
+      root.lang = (lang === "mk") ? "mk" : "en";
+      langMK.classList.toggle("active", lang === "mk");
+      langEN.classList.toggle("active", lang === "en");
+
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
+      });
+
+      localStorage.setItem("lang", lang);
+    }
+
+    langMK.addEventListener("click", ()=> applyLang("mk"));
+    langEN.addEventListener("click", ()=> applyLang("en"));
+
+    // default MK unless user set preference
+    const saved = localStorage.getItem("lang");
+    applyLang(saved || "mk");
+  </script>
 </body>
 </html>
