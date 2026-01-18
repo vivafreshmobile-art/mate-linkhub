@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="mk">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#07080c" />
-  <meta name="description" content="Darko Bojovski — Balkan Overall Juniors Champion — Personal Coach." />
+  <meta name="theme-color" content="#090a0e" />
+  <meta name="description" content="Darko Bojovski — Fitness Coach. Structured coaching. Real results. No fluff." />
   <title>Darko Bojovski — Coaching</title>
 
   <style>
@@ -12,1142 +12,1119 @@
       --bg:#07080c;
       --bg2:#0b0d12;
       --ink:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.52);
-
-      --stroke:rgba(255,255,255,.14);
-      --card:rgba(255,255,255,.05);
-      --card2:rgba(255,255,255,.07);
-
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.50);
+      --stroke:rgba(255,255,255,.12);
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.09);
       --gold:#f2c14e;
       --gold2:#ffde7a;
-      --shadow: 0 20px 70px rgba(0,0,0,.62);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
 
-      --r12:12px;
-      --r16:16px;
-      --r20:20px;
-      --r28:28px;
-
-      --max: 980px;
-
-      --safe-b: max(16px, env(safe-area-inset-bottom));
-      --safe-t: max(0px, env(safe-area-inset-top));
+      --max: 1120px;
+      --pad: clamp(16px, 3vw, 28px);
+      --h1: clamp(34px, 4.4vw, 60px);
+      --h2: clamp(22px, 2.5vw, 34px);
+      --h3: clamp(18px, 1.6vw, 22px);
+      --p:  16px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--ink);
-      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(1000px 700px at 10% -10%, rgba(242,193,78,.18), transparent 55%),
+        radial-gradient(900px 600px at 110% 10%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
+
     a{ color:inherit; text-decoration:none; }
-    button{ font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
-    @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-    }
+    .container{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
 
-    /* Background (supports optional image) */
-    .bg-photo{
-      position:fixed; inset:0; z-index:-4;
-      background:
-        radial-gradient(900px 500px at 30% 10%, rgba(242,193,78,.10), transparent 60%),
-        radial-gradient(900px 600px at 70% 20%, rgba(242,193,78,.07), transparent 60%),
-        radial-gradient(1100px 900px at 50% 110%, rgba(0,0,0,.75), rgba(0,0,0,.92)),
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.88));
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,8,12,.55);
+      border-bottom:1px solid var(--stroke);
     }
-    /* If you add /assets/bg.jpg it will layer in as texture */
-    .bg-photo::after{
-      content:"";
-      position:absolute; inset:0;
-      background: url("assets/bg.jpg") center/cover no-repeat;
-      filter: blur(18px) saturate(.85) contrast(.95);
-      transform: scale(1.10);
-      opacity:.42;
-      pointer-events:none;
-    }
-    .grain{
-      pointer-events:none;
-      position:fixed; inset:0; z-index:-1;
-      opacity:.10;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-    }
-
-    .wrap{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-      padding: calc(14px + var(--safe-t)) 0 calc(80px + var(--safe-b));
-    }
-
-    /* Top bar */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      padding: calc(10px + var(--safe-t)) 0 10px;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(7,8,12,.82), rgba(7,8,12,.35));
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .topbar-inner{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px var(--pad);
+      max-width:var(--max); margin:0 auto;
+      gap:14px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
     }
-    .logo{
-      width:44px; height:44px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(242,193,78,.18), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.20));
-      display:grid; place-items:center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      flex:0 0 auto;
-    }
-    .logo svg{ width:40px; height:40px; opacity:.95; }
-    .brand-text{ min-width:0; }
-    .brand-text b{
-      display:block;
-      font-size: 13px;
-      letter-spacing:.7px;
-      text-transform: uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 55vw;
-    }
-    .brand-text small{
-      display:block;
-      margin-top:2px;
-      font-size: 12px;
-      color:var(--muted2);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 55vw;
-    }
-
-    .hamb{
-      width:44px; height:44px;
-      border-radius: 14px;
-      border:1px solid rgba(242,193,78,.28);
+    .brand img{
+      width:46px; height:46px; object-fit:contain;
+      border-radius:12px;
       background: rgba(255,255,255,.04);
-      display:grid; place-items:center;
+      border:1px solid var(--stroke);
+      padding:6px;
     }
-    .hamb i{
-      width:18px; height:2px;
-      display:block;
-      background: rgba(242,193,78,.95);
-      border-radius: 999px;
-      position:relative;
+    .brand b{ letter-spacing:.6px; }
+    .brand small{ display:block; color:var(--muted); font-weight:500; margin-top:2px; }
+    .nav-links{
+      display:flex; gap:16px; align-items:center;
     }
-    .hamb i::before, .hamb i::after{
-      content:"";
-      position:absolute; left:0;
-      width:18px; height:2px;
-      background: rgba(242,193,78,.95);
-      border-radius:999px;
+    .nav-links a{
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:10px 10px;
+      border-radius:12px;
+      transition: .18s ease;
     }
-    .hamb i::before{ top:-6px; }
-    .hamb i::after{ top:6px; }
+    .nav-links a:hover{ color:var(--ink); background: rgba(255,255,255,.05); }
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color:var(--ink);
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.2px;
+      transition: .18s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.075); }
+    .btn-primary{
+      border-color: rgba(242,193,78,.35);
+      background: linear-gradient(135deg, rgba(242,193,78,.18), rgba(255,255,255,.06));
+      box-shadow: 0 10px 30px rgba(242,193,78,.08);
+    }
+    .btn-primary:hover{
+      box-shadow: 0 14px 38px rgba(242,193,78,.14);
+    }
 
-    /* Mobile menu */
-    .menu{
-      position:fixed;
-      inset:0;
-      z-index:80;
+    .hamburger{ display:none; }
+    @media (max-width: 860px){
+      .nav-links{ display:none; }
+      .hamburger{ display:inline-flex; }
+      .brand{ min-width: auto; }
+    }
+
+    /* Mobile drawer */
+    .drawer{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.62);
       display:none;
+      z-index:60;
     }
-    .menu.open{ display:block; }
-    .menu-backdrop{
-      position:absolute; inset:0;
-      background: rgba(0,0,0,.72);
-      backdrop-filter: blur(8px);
+    .drawer.open{ display:block; }
+    .panel{
+      position:absolute; right:0; top:0; height:100%; width:min(420px, 92vw);
+      background: rgba(11,13,18,.92);
+      border-left:1px solid var(--stroke);
+      backdrop-filter: blur(14px);
+      padding: 18px;
+      display:flex; flex-direction:column; gap:10px;
     }
-    .menu-sheet{
-      position:absolute;
-      top: calc(12px + var(--safe-t));
-      left: 16px;
-      right: 16px;
-      border-radius: var(--r20);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(10,12,18,.92);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      transform: translateY(-8px);
-      opacity:0;
-      animation: sheetIn .22s cubic-bezier(.2,.9,.2,1) forwards;
-    }
-    @keyframes sheetIn{ to{ transform: translateY(0); opacity:1; } }
-
-    .menu-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .menu-head b{ font-size: 13px; letter-spacing:.35px; }
-    .menu-close{
-      width:40px; height:40px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      display:grid; place-items:center;
-    }
-    .menu-links{
-      padding: 10px;
-      display:grid;
-      gap:8px;
-    }
-    .menu-links a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-    .menu-links small{ color:var(--muted2); font-size:12px; }
-
-    /* Sections */
-    .section{
-      margin-top: 14px;
+    .panel .close-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .panel .panel-links{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+    .panel .panel-links a{
+      padding:12px 12px;
+      border-radius:14px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
-      border-radius: var(--r28);
-      box-shadow: 0 10px 44px rgba(0,0,0,.36);
+      color:var(--ink);
+      font-weight:700;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 26px 0 26px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 18px;
+      align-items:stretch;
+      padding: 22px 0 8px;
+    }
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .hero-left{
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
+      min-height: 520px;
     }
-    .section::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(900px 240px at 20% 0%, rgba(242,193,78,.12), transparent 62%);
-      opacity:.9;
-      pointer-events:none;
+    .hero-left .bg{
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(120deg, rgba(7,8,12,.92), rgba(7,8,12,.58) 52%, rgba(7,8,12,.88)),
+        url("assets/photo4.PNG");
+      background-size: cover;
+      background-position: center top;
+      filter: saturate(1.06) contrast(1.06);
+      transform: scale(1.02);
     }
-    .inner{ position:relative; padding: 16px; }
+    .hero-left .inner{
+      position:relative;
+      padding: clamp(22px, 3.6vw, 36px);
+      display:flex; flex-direction:column; justify-content:space-between;
+      min-height: 520px;
+    }
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      color: var(--muted);
+      font-weight:800;
+      letter-spacing:.28em;
+      font-size: 12px;
+      text-transform:uppercase;
+    }
+    .kicker .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(242,193,78,.10);
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: var(--h1);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 54ch;
+    }
 
-    .hero{
-      padding: 18px 16px 16px;
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 18px;
+      align-items:center;
     }
-    .hero h1{
-      margin:0;
-      font-size: 28px;
-      font-weight: 950;
-      letter-spacing:.7px;
-      text-transform: uppercase;
-      line-height:1.06;
-    }
-    .hero p{
-      margin:10px 0 0;
-      color: rgba(255,255,255,.78);
-      font-size: 13.2px;
-      line-height:1.6;
-      letter-spacing:.15px;
-    }
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:12px;
+
+    .proof{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 16px;
     }
     .chip{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.88);
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.86);
+      font-weight:750;
+      font-size: 13px;
+    }
+    .chip i{
+      width:8px; height:8px; border-radius: 99px;
+      background: rgba(255,255,255,.50);
     }
     .chip.gold{
       border-color: rgba(242,193,78,.35);
-      box-shadow: 0 0 20px rgba(242,193,78,.10);
+      background: rgba(242,193,78,.09);
+    }
+    .chip.gold i{ background: var(--gold); }
+
+    .hero-right{
+      display:grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .hero-right{ grid-template-rows: auto; }
     }
 
-    /* CTA row */
-    .cta{
+    .card{
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .top{
+      padding: 18px 18px 0;
+      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+    }
+    .card h3{ margin:0; font-size: var(--h3); letter-spacing:-.01em; }
+    .card p{ margin: 8px 0 0; color: var(--muted); line-height:1.5; }
+    .mini{
+      font-size:12px; color: var(--muted2); font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase;
+    }
+
+    .poster{
+      min-height: 240px;
+      background-image:
+        linear-gradient(180deg, rgba(7,8,12,.25), rgba(7,8,12,.92)),
+        url("assets/photo2.PNG");
+      background-size: cover;
+      background-position: center;
+    }
+    .poster .overlay{
+      position:absolute; inset:0;
+      background: radial-gradient(700px 300px at 70% 0%, rgba(242,193,78,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .poster .content{
+      position:relative;
+      padding: 18px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      min-height: 240px;
+    }
+
+    .stack{
+      padding: 18px;
+    }
+    .grid2{
       margin-top: 14px;
       display:grid;
-      gap:10px;
-    }
-    .cta-primary{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 14px 14px;
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(242,193,78,.18), rgba(0,0,0,.12)),
-        rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.17);
-      overflow:hidden;
-      position:relative;
-    }
-    .cta-primary::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(760px 220px at 10% 20%, rgba(242,193,78,.18), transparent 62%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .cta-primary strong{ display:block; font-size:14px; letter-spacing:.25px; }
-    .cta-primary span{
-      display:block;
-      margin-top:4px;
-      color:var(--muted);
-      font-size:12px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      overflow:hidden;
-      -webkit-line-clamp: 2;
-    }
-    .cta-right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      position:relative;
-    }
-    .pill{
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(242,193,78,.35);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.90);
-      white-space:nowrap;
-    }
-    .arrow{
-      width:34px; height:34px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      display:grid; place-items:center;
-      transition: transform .22s cubic-bezier(.2,.9,.2,1);
-    }
-    .cta-primary:hover .arrow{ transform: translateX(2px); }
-
-    .cta-mini{
-      display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:10px;
+      gap: 12px;
     }
-    .mini{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-    }
-    .mini b{ font-size: 13px; letter-spacing:.2px; }
-    .mini small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); }
-
-    /* Stats */
-    .stats{
-      margin-top: 12px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
+    @media (max-width: 520px){
+      .grid2{ grid-template-columns: 1fr; }
     }
     .stat{
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      padding: 12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 14px 14px;
     }
-    .stat .n{
-      font-size: 26px;
-      font-weight: 950;
-      letter-spacing:.5px;
-      color: rgba(242,193,78,.95);
-      line-height:1;
+    .stat b{ display:block; font-size:18px; letter-spacing:-.02em; }
+    .stat span{ display:block; margin-top:4px; color:var(--muted); font-weight:600; font-size:13px; line-height:1.35; }
+
+    /* Section base */
+    section{ padding: 42px 0; }
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      gap: 18px;
+      margin-bottom: 16px;
     }
-    .stat .t{
-      margin-top:6px;
-      color: rgba(255,255,255,.78);
-      font-size: 12.5px;
-      letter-spacing:.2px;
+    .section-head h2{
+      margin:0;
+      font-size: var(--h2);
+      letter-spacing:-.02em;
+    }
+    .section-head p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+    @media (max-width: 820px){
+      .section-head{ flex-direction:column; align-items:flex-start; }
     }
 
-    /* Services */
-    .head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:10px;
-      padding-bottom: 10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      margin-bottom: 12px;
-    }
-    .head .h{
-      font-weight: 950;
-      letter-spacing:.35px;
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-    .head .sub{
-      color: var(--muted2);
-      font-size: 12px;
-      letter-spacing:.2px;
-    }
-
-    .cards{
+    /* Method */
+    .pillars{
       display:grid;
-      gap:10px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
     }
-    .card{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      border-radius: 16px;
-      padding: 12px;
+    @media (max-width: 980px){ .pillars{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px){ .pillars{ grid-template-columns: 1fr; } }
+    .pillar{
+      padding: 16px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 16px 46px rgba(0,0,0,.35);
       position:relative;
       overflow:hidden;
     }
-    .card::before{
+    .pillar:before{
       content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(520px 160px at 10% 10%, rgba(242,193,78,.10), transparent 60%);
-      opacity:.9;
+      position:absolute; inset:-1px;
+      background: radial-gradient(360px 120px at 20% 0%, rgba(242,193,78,.15), transparent 55%);
       pointer-events:none;
     }
-    .card-top{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+    .pillar b{ display:block; font-size: 16px; letter-spacing:-.01em; margin-bottom:6px; }
+    .pillar ul{ margin:10px 0 0 18px; padding:0; color:var(--muted); line-height:1.5; }
+    .pillar li{ margin: 6px 0; }
+
+    /* Services */
+    .services{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 18px;
     }
-    .card-top b{ font-size: 13px; letter-spacing:.25px; }
+    @media (max-width: 980px){ .services{ grid-template-columns: 1fr; } }
+    .service-list{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+    }
+    .service-list .row{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:14px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .service-list .row:first-child{ border-top: 0; padding-top: 6px; }
+    .service-list .row b{ display:block; font-size: 16px; }
+    .service-list .row span{ display:block; color: var(--muted); margin-top: 6px; line-height: 1.45; }
     .tag{
-      font-size:11.5px;
-      padding:6px 9px;
-      border-radius:999px;
+      flex:0 0 auto;
+      padding: 8px 10px;
+      border-radius: 999px;
       border:1px solid rgba(242,193,78,.28);
+      background: rgba(242,193,78,.08);
       color: rgba(255,255,255,.88);
-      background: rgba(0,0,0,.18);
+      font-weight:800;
+      font-size: 12px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
       white-space:nowrap;
     }
-    .card p{
+    .service-side{
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(7,8,12,.10), rgba(7,8,12,.92)),
+        url("assets/photo6.PNG");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
       position:relative;
-      margin:8px 0 0;
-      color: rgba(255,255,255,.78);
-      font-size: 12.3px;
-      line-height:1.55;
-      letter-spacing:.15px;
+      min-height: 360px;
+      display:flex;
     }
-    .bullets{
-      position:relative;
-      margin:10px 0 0;
-      display:grid;
-      gap:6px;
-      color: rgba(255,255,255,.82);
-      font-size: 12.3px;
+    .service-side .inside{
+      padding: 18px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      width:100%;
+    }
+    .service-side .inside b{
+      font-size: 18px;
+      letter-spacing:-.01em;
+    }
+    .service-side .inside p{
+      margin:8px 0 0;
+      color: var(--muted);
       line-height:1.5;
     }
-    .bullets div::before{
-      content:"• ";
-      color: rgba(242,193,78,.90);
+    .service-side .inside .hero-actions{ margin-top: 12px; }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .shot{
+      border-radius: 18px;
+      border:1px solid var(--stroke);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+      position:relative;
+      cursor: pointer;
+      box-shadow: 0 18px 46px rgba(0,0,0,.35);
+      min-height: 140px;
+    }
+    .shot img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+      transition: transform .22s ease, filter .22s ease;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .shot:hover img{ transform: scale(1.06); filter: saturate(1.10) contrast(1.08); }
+    .shot:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.55));
+      opacity:.6;
+      transition: .22s ease;
+    }
+    .shot:hover:after{ opacity:.85; }
+
+    /* Spans */
+    .g1{ grid-column: span 7; grid-row: span 2; min-height: 320px; }
+    .g2{ grid-column: span 5; grid-row: span 1; min-height: 154px; }
+    .g3{ grid-column: span 5; grid-row: span 1; min-height: 154px; }
+    .g4{ grid-column: span 4; grid-row: span 1; min-height: 220px; }
+    .g5{ grid-column: span 4; grid-row: span 1; min-height: 220px; }
+    .g6{ grid-column: span 4; grid-row: span 1; min-height: 220px; }
+
+    @media (max-width: 980px){
+      .gallery{ grid-template-columns: repeat(6, 1fr); }
+      .g1{ grid-column: span 6; }
+      .g2,.g3{ grid-column: span 6; }
+      .g4,.g5,.g6{ grid-column: span 6; min-height: 220px; }
     }
 
     /* FAQ */
     .faq{
+      margin-top: 18px;
       display:grid;
-      gap:10px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
-    .q{
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      overflow:hidden;
-    }
-    .q button{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      text-align:left;
-      padding: 14px 12px;
-    }
-    .q button b{ font-size: 13px; letter-spacing:.15px; }
-    .plus{
-      width:34px; height:34px;
-      border-radius:999px;
-      border:1px solid rgba(242,193,78,.28);
+    @media (max-width: 860px){ .faq{ grid-template-columns: 1fr; } }
+    details{
+      border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
-      display:grid; place-items:center;
-      flex:0 0 auto;
-      position:relative;
+      border-radius: 18px;
+      padding: 14px 14px;
     }
-    .plus::before, .plus::after{
-      content:"";
-      width:14px; height:2px;
-      background: rgba(242,193,78,.95);
-      border-radius:999px;
-      position:absolute;
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color: var(--ink);
+      list-style:none;
     }
-    .plus::after{ transform: rotate(90deg); transition: transform .18s ease; }
-    .a{
-      max-height:0;
-      overflow:hidden;
-      transition: max-height .22s ease;
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-    .a .pad{
-      padding: 12px;
-      color: rgba(255,255,255,.78);
-      font-size: 12.3px;
-      line-height:1.6;
-    }
-    .q.open .a{ max-height: 240px; }
-    .q.open .plus::after{ transform: rotate(0deg); }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin:10px 0 0; color: var(--muted); line-height:1.55; }
 
     /* Contact */
     .contact{
       display:grid;
-      gap:10px;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
     }
-    .contact a{
+    @media (max-width: 980px){ .contact{ grid-template-columns: 1fr; } }
+    .contact-card{
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .contact-card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(520px 220px at 20% 0%, rgba(242,193,78,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .contact-card .content{ position:relative; }
+    .contact-card p{ color: var(--muted); line-height:1.55; margin: 8px 0 0; }
+    .contact-card .hero-actions{ margin-top: 12px; }
+
+    /* Footer */
+    footer{
+      padding: 22px 0 40px;
+      border-top: 1px solid var(--stroke);
+      color: var(--muted);
+    }
+    .foot{
+      display:flex; flex-wrap:wrap; gap:12px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .foot a{ color: rgba(255,255,255,.82); font-weight:800; }
+    .foot a:hover{ color: var(--gold2); }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 80;
+      padding: 18px;
+    }
+    .lightbox.open{ display:flex; }
+    .lb-inner{
+      width: min(1080px, 96vw);
+      max-height: 90vh;
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(11,13,18,.92);
+      box-shadow: 0 30px 100px rgba(0,0,0,.60);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .lb-top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      gap: 10px;
+    }
+    .lb-top .lb-actions{ display:flex; gap:8px; }
+    .lb-btn{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .lb-btn:hover{ background: rgba(255,255,255,.08); }
+    .lb-img{
+      width: 100%;
+      height: 100%;
       display:flex;
       align-items:center;
-      gap:12px;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      transition: transform .18s cubic-bezier(.2,.9,.2,1), background .18s ease, border-color .18s ease;
+      justify-content:center;
+      background: rgba(0,0,0,.25);
     }
-    .contact a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.21); }
-    .ico{
-      width:38px; height:38px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      display:grid; place-items:center;
-      flex:0 0 auto;
-    }
-    .contact b{ font-size:13px; letter-spacing:.25px; }
-    .contact small{ display:block; margin-top:4px; font-size:12px; color:var(--muted2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width: 100%; }
-
-    .footer{
-      margin-top: 12px;
-      color: var(--muted2);
-      font-size: 12px;
-      text-align:center;
-      padding: 12px 0 2px;
-      letter-spacing:.2px;
-    }
-
-    /* Floating quick actions */
-    .fab{
-      position:fixed;
-      right: 16px;
-      bottom: calc(16px + var(--safe-b));
-      z-index:90;
-      display:grid;
-      gap:10px;
-      align-items:end;
-      justify-items:end;
-    }
-    .fab-actions{
-      display:grid;
-      gap:10px;
-      opacity:0;
-      transform: translateY(8px);
-      pointer-events:none;
-      transition: opacity .18s ease, transform .18s ease;
-    }
-    .fab.open .fab-actions{
-      opacity:1;
-      transform: translateY(0);
-      pointer-events:auto;
-    }
-    .fab a, .fab button{
-      width:54px; height:54px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(12,14,20,.88);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 55px rgba(0,0,0,.55);
-      display:grid; place-items:center;
-    }
-    .fab-main{
-      border-color: rgba(242,193,78,.34) !important;
-      background: linear-gradient(135deg, rgba(242,193,78,.20), rgba(0,0,0,.10)) !important;
-    }
-    .fab-main span{
-      width:18px; height:2px;
-      background: rgba(242,193,78,.95);
-      border-radius:999px;
-      position:relative;
+    .lb-img img{
+      width:100%;
+      height: calc(90vh - 56px);
+      object-fit: contain;
       display:block;
-    }
-    .fab-main span::before{
-      content:"";
-      position:absolute;
-      left:50%; top:50%;
-      transform: translate(-50%,-50%) rotate(90deg);
-      width:18px; height:2px;
-      background: rgba(242,193,78,.95);
-      border-radius:999px;
-      transition: transform .18s ease;
-    }
-    .fab.open .fab-main span::before{
-      transform: translate(-50%,-50%) rotate(0deg);
+      background: rgba(0,0,0,.0);
     }
 
-    /* Reveal animation */
-    .reveal{
-      opacity:0;
-      transform: translateY(12px);
-      transition: opacity .55s cubic-bezier(.18,.9,.22,1), transform .55s cubic-bezier(.18,.9,.22,1);
-    }
-    .reveal.in{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* Responsive */
-    @media (min-width: 860px){
-      .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:14px; align-items:stretch; }
-      .cta{ margin-top:0; align-content:start; }
-      .stats{ grid-template-columns: 1fr 1fr; }
-      .cards{ grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 430px){
-      .hero h1{ font-size: 24px; }
-      .cta-mini{ grid-template-columns: 1fr; }
-      .stats{ grid-template-columns: 1fr 1fr; }
-    }
+    /* small utility */
+    .muted{ color: var(--muted); }
+    .gold{ color: var(--gold2); }
   </style>
 </head>
 
 <body>
-  <div class="bg-photo" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="topbar" role="banner">
-    <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="Home">
-        <div class="logo" aria-hidden="true">
-          <!-- Simple outline logo: DARBO shield -->
-          <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
-            <text x="48" y="20"
-                  text-anchor="middle"
-                  font-size="14"
-                  font-weight="900"
-                  letter-spacing="2"
-                  fill="rgba(255,255,255,.96)"
-                  style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;">
-              DARBO
-            </text>
-            <path d="M48 26
-                     C60 26 70 28 78 31
-                     V52
-                     C78 68 66 80 48 88
-                     C30 80 18 68 18 52
-                     V31
-                     C26 28 36 26 48 26 Z"
-                  fill="none"
-                  stroke="rgba(255,255,255,.92)"
-                  stroke-width="4.2"
-                  stroke-linejoin="round"/>
-          </svg>
+  <!-- Mobile drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="close-row">
+        <div class="brand" style="gap:10px">
+          <img src="assets/Logo.PNG" alt="Darbo logo" />
+          <div>
+            <b>Darko Bojovski</b>
+            <small>Coaching</small>
+          </div>
         </div>
-        <div class="brand-text">
-          <b id="uiName">DARKO BOJOVSKI</b>
-          <small id="uiChamp">Balkan Overall Juniors Champion</small>
-        </div>
-      </a>
-
-      <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false">
-        <i aria-hidden="true"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div class="menu" id="menu" aria-hidden="true">
-    <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
-    <div class="menu-sheet" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="menu-head">
-        <b>Мени</b>
-        <button class="menu-close" id="menuClose" aria-label="Close menu">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round"/>
-          </svg>
-        </button>
+        <button class="lb-btn" id="drawerClose" type="button" aria-label="Close menu">✕</button>
       </div>
-      <div class="menu-links">
-        <a href="#services"><span>Услуги</span><small>Што добиваш</small></a>
-        <a href="#faq"><span>Најчести прашања</span><small>Јасни одговори</small></a>
-        <a href="#contact"><span>Контактирај ме</span><small>WhatsApp / Email</small></a>
-        <a id="menuWhatsApp" href="#"><span>Започни веднаш</span><small>WhatsApp</small></a>
+
+      <div class="panel-links">
+        <a href="#method">Method</a>
+        <a href="#services">Coaching</a>
+        <a href="#gallery">Photos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Start</a>
+      </div>
+
+      <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
       </div>
     </div>
   </div>
 
-  <main class="wrap" id="top">
-    <!-- HERO -->
-    <section class="section reveal">
-      <div class="inner hero">
+  <!-- Top nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <img src="assets/Logo.PNG" alt="Darbo logo" />
         <div>
-          <h1 id="name">DARKO BOJOVSKI</h1>
-          <p>
-            <span id="tagline">Coaching • Plans • Transformations</span><br />
-            <span style="color:var(--muted);">Почни со структура. Следи план. Изгради резултат.</span>
-          </p>
+          <b>Darko Bojovski</b>
+          <small>Fitness Coach</small>
+        </div>
+      </a>
 
-          <div class="chips" aria-label="Proof points">
-            <div class="chip gold">Champion</div>
-            <div class="chip">Coaching</div>
-            <div class="chip">Results</div>
-          </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#method">Method</a>
+        <a href="#services">Coaching</a>
+        <a href="#gallery">Photos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Start</a>
+      </nav>
 
-          <div class="stats" style="margin-top:14px;">
-            <div class="stat">
-              <div class="n" data-count="100" data-suffix="+">0</div>
-              <div class="t">задоволни клиенти</div>
+      <div class="cta">
+        <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">IG</a>
+        <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Start on WhatsApp</a>
+        <button class="btn hamburger" id="drawerOpen" type="button" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="inner">
+            <div>
+              <div class="kicker"><span class="dot"></span> structured coaching • real results</div>
+              <h1>Build a physique that holds under pressure.</h1>
+              <p class="sub">
+                No random workouts. No guessing with food. You get a plan, tracking, and accountability that forces progress.
+              </p>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Start Coaching (WhatsApp)</a>
+                <a class="btn" href="#services">See Coaching</a>
+                <a class="btn" href="#gallery">View Photos</a>
+              </div>
+
+              <div class="proof" aria-label="Proof points">
+                <span class="chip gold"><i></i> Balkan overall juniors champion</span>
+                <span class="chip"><i></i> training + nutrition structure</span>
+                <span class="chip"><i></i> check-ins + plan updates</span>
+              </div>
             </div>
-            <div class="stat">
-              <div class="n" data-count="24" data-suffix="/7">0</div>
-              <div class="t">поддршка</div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+              <div class="muted" style="font-weight:700;">@d_bojovski</div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn" href="mailto:darko.bojovski@gmail.com">Email</a>
+                <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="cta">
-          <a class="cta-primary" id="primaryCta" href="#" target="_blank" rel="noopener">
-            <div>
-              <strong>Започни веднаш (WhatsApp)</strong>
-              <span>Прати: години, висина, тежина, цел, денови/недела + 1 слика.</span>
-            </div>
-            <div class="cta-right">
-              <span class="pill">Sign up</span>
-              <div class="arrow" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M9 18l6-6-6-6" stroke="rgba(255,255,255,.9)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="hero-right">
+          <div class="card poster" aria-label="Poster card">
+            <div class="overlay" aria-hidden="true"></div>
+            <div class="content">
+              <div class="mini">Coaching is a system</div>
+              <h3 style="margin:8px 0 0;">You don’t need motivation. You need a plan that removes excuses.</h3>
+              <p>Message now. Get evaluated. Start executing this week.</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Start</a>
+                <a class="btn" href="#method">How it works</a>
               </div>
             </div>
-          </a>
-
-          <div class="cta-mini">
-            <a class="mini" id="resultsBtn" href="#" target="_blank" rel="noopener">
-              <div>
-                <b>Резултати</b>
-                <small>Трансформации</small>
-              </div>
-              <div aria-hidden="true">→</div>
-            </a>
-            <a class="mini" id="igBtn" href="#" target="_blank" rel="noopener">
-              <div>
-                <b>Instagram</b>
-                <small id="igSub">@d_bojovski</small>
-              </div>
-              <div aria-hidden="true">→</div>
-            </a>
           </div>
+
+          <div class="card stack" aria-label="Stats card">
+            <div class="top">
+              <div>
+                <div class="mini">What you get</div>
+                <h3>Weekly structure that forces progress</h3>
+                <p>Training plan + nutrition targets + accountability. You execute. I adjust.</p>
+              </div>
+              <div class="tag">NO FLUFF</div>
+            </div>
+
+            <div class="grid2">
+              <div class="stat">
+                <b>Training plan</b>
+                <span>Built around your level, schedule, and recovery.</span>
+              </div>
+              <div class="stat">
+                <b>Nutrition targets</b>
+                <span>Simple tracking and realistic meal structure.</span>
+              </div>
+              <div class="stat">
+                <b>Check-ins</b>
+                <span>Progress review + corrections, consistently.</span>
+              </div>
+              <div class="stat">
+                <b>Result focus</b>
+                <span>Strength, shape, discipline. No wasted weeks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- METHOD -->
+    <section id="method">
+      <div class="section-head">
+        <div>
+          <div class="mini">Method</div>
+          <h2>Four pillars. One outcome: measurable progress.</h2>
+        </div>
+        <p>Most people fail because they improvise. This is the opposite: a repeatable system you can stick to.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <b>Training</b>
+          <ul>
+            <li>Plan built for your schedule</li>
+            <li>Progressive overload tracked</li>
+            <li>Form cues + execution standards</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <b>Nutrition</b>
+          <ul>
+            <li>Protein target + calories</li>
+            <li>Simple meal structure</li>
+            <li>Adjustments based on weekly data</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <b>Accountability</b>
+          <ul>
+            <li>Weekly check-ins</li>
+            <li>Photos + weight trends</li>
+            <li>Corrections, not excuses</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <b>Recovery</b>
+          <ul>
+            <li>Sleep and fatigue management</li>
+            <li>Volume/intensity control</li>
+            <li>Sustainability to avoid burnout</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- SERVICES -->
-    <section class="section reveal" id="services">
-      <div class="inner">
-        <div class="head">
-          <div>
-            <div class="h">Услуги</div>
-            <div class="sub">Избери пат. Добиваш план + корекции.</div>
+    <section id="services">
+      <div class="section-head">
+        <div>
+          <div class="mini">Coaching</div>
+          <h2>What I offer</h2>
+        </div>
+        <p>Pick the service based on how much structure you need. If you want real change, don’t choose the “easy” option.</p>
+      </div>
+
+      <div class="services">
+        <div class="service-list" aria-label="Service list">
+          <div class="row">
+            <div>
+              <b>Personal / Online Coaching</b>
+              <span>Full system: training, nutrition, and check-ins. This is the main package for serious results.</span>
+            </div>
+            <div class="tag">BEST</div>
           </div>
-          <div class="sub">DM на WhatsApp</div>
+
+          <div class="row">
+            <div>
+              <b>Training Plan</b>
+              <span>A structured program built for your goal. You execute independently.</span>
+            </div>
+            <div class="tag">PLAN</div>
+          </div>
+
+          <div class="row">
+            <div>
+              <b>Diet Plan</b>
+              <span>Clear nutrition targets and meal structure based on your body and routine.</span>
+            </div>
+            <div class="tag">FOOD</div>
+          </div>
+
+          <div class="row">
+            <div>
+              <b>Lifestyle Evaluation</b>
+              <span>Identify what’s blocking progress: habits, recovery, routine, consistency.</span>
+            </div>
+            <div class="tag">AUDIT</div>
+          </div>
+
+          <div class="row">
+            <div>
+              <b>Check-ups</b>
+              <span>Ongoing progress review with adjustments. No drifting, no “hope it works”.</span>
+            </div>
+            <div class="tag">TRACK</div>
+          </div>
         </div>
 
-        <div class="cards">
-          <div class="card">
-            <div class="card-top">
-              <b>Индивидуални тренинзи</b>
-              <span class="tag">1:1</span>
-            </div>
-            <p>Персонализирани сесии еден-на-еден со максимално внимание и јасна структура.</p>
-            <div class="bullets">
-              <div>Личен тренер (сала или надвор)</div>
-              <div>Целосно прилагодена програма</div>
-              <div>Следење + корекции</div>
+        <div class="service-side" aria-label="Service image">
+          <div class="inside">
+            <b>Start in 60 seconds.</b>
+            <p>Send age, height, weight, goal, and weekly availability. If you can, add a photo.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Message on WhatsApp</a>
+              <a class="btn" href="mailto:darko.bojovski@gmail.com">Email</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="card">
-            <div class="card-top">
-              <b>Онлајн коучинг</b>
-              <span class="tag">Online</span>
-            </div>
-            <p>Професионално водство од далечина со редовни проверки и прилагодување на програмата.</p>
-            <div class="bullets">
-              <div>Персонализирана програма</div>
-              <div>Видео консултации</div>
-              <div>Check-ins + напредок</div>
-            </div>
-          </div>
+    <!-- PHOTOS -->
+    <section id="gallery">
+      <div class="section-head">
+        <div>
+          <div class="mini">Photos</div>
+          <h2>Proof and presence</h2>
+        </div>
+        <p>Strong visuals matter because they signal standards. Click any photo to open full screen.</p>
+      </div>
 
-          <div class="card">
-            <div class="card-top">
-              <b>Хибриден пристап</b>
-              <span class="tag">Best of both</span>
-            </div>
-            <p>Комбинација на лични и онлајн сесии за максимална флексибилност и ефикасност.</p>
-            <div class="bullets">
-              <div>Лично + онлајн</div>
-              <div>Прилагоден распоред</div>
-              <div>Вежбање + исхрана</div>
-            </div>
-          </div>
+      <div class="gallery" aria-label="Photo gallery">
+        <div class="shot g1" data-src="assets/photo8.PNG" data-title="Stage / presence">
+          <img src="assets/photo8.PNG" alt="Darko stage photo" loading="lazy" />
+        </div>
+        <div class="shot g2" data-src="assets/photo4.PNG" data-title="Competition close-up">
+          <img src="assets/photo4.PNG" alt="Darko close-up" loading="lazy" />
+        </div>
+        <div class="shot g3" data-src="assets/photo9.PNG" data-title="With another athlete">
+          <img src="assets/photo9.PNG" alt="Two athletes" loading="lazy" />
+        </div>
 
-          <div class="card">
-            <div class="card-top">
-              <b>План (брз старт)</b>
-              <span class="tag">Fast</span>
-            </div>
-            <p>Ако сакаш веднаш да почнеш: јасен план што можеш да го следиш без компликации.</p>
-            <div class="bullets">
-              <div>Тренинг план според цел</div>
-              <div>Едноставни правила за исхрана</div>
-              <div>Проверка и корекција</div>
-            </div>
-          </div>
+        <div class="shot g4" data-src="assets/photo5.PNG" data-title="Lineup">
+          <img src="assets/photo5.PNG" alt="Lineup photo" loading="lazy" />
+        </div>
+        <div class="shot g5" data-src="assets/photo7.PNG" data-title="Back pose">
+          <img src="assets/photo7.PNG" alt="Back pose" loading="lazy" />
+        </div>
+        <div class="shot g6" data-src="assets/photo1.PNG" data-title="Stage pose">
+          <img src="assets/photo1.PNG" alt="Stage pose" loading="lazy" />
+        </div>
+
+        <div class="shot g2" data-src="assets/photo6.PNG" data-title="Gym moment">
+          <img src="assets/photo6.PNG" alt="Gym photo" loading="lazy" />
+        </div>
+        <div class="shot g3" data-src="assets/photo3.PNG" data-title="Gym physique">
+          <img src="assets/photo3.PNG" alt="Gym physique" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- RECIPES PLACEHOLDER -->
+    <section id="recipes">
+      <div class="section-head">
+        <div>
+          <div class="mini">Protein Recipes</div>
+          <h2>Coming next</h2>
+        </div>
+        <p>When you send recipes + photos, we’ll add a filterable recipe gallery with macros. This will be the “unique” hook.</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="content">
+          <b style="font-size:18px;">Ready for recipes module</b>
+          <p>Send: recipe name, ingredients, steps, calories, protein, and a photo. I’ll plug them into a clean card system.</p>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section reveal" id="faq">
-      <div class="inner">
-        <div class="head">
-          <div>
-            <div class="h">Најчесто поставувани прашања</div>
-            <div class="sub">Кратко. Директно. Практично.</div>
-          </div>
+    <section id="faq">
+      <div class="section-head">
+        <div>
+          <div class="mini">FAQ</div>
+          <h2>Objections, answered</h2>
         </div>
+        <p>This is where most trainer sites lie. We don’t. You’ll get clarity on how it works.</p>
+      </div>
 
-        <div class="faq" id="faqList">
-          <div class="q">
-            <button type="button">
-              <b>Каков е концептот на тренингот и како функционира?</b>
-              <span class="plus" aria-hidden="true"></span>
-            </button>
-            <div class="a">
-              <div class="pad">
-                Почнуваме со проценка → добиваш план → неделни/двонеделни check-ins → корекции според напредок.
-              </div>
-            </div>
-          </div>
-
-          <div class="q">
-            <button type="button">
-              <b>Дали е соодветно ако никогаш не сум вежбал/а?</b>
-              <span class="plus" aria-hidden="true"></span>
-            </button>
-            <div class="a">
-              <div class="pad">
-                Да. Планот се гради за твоето ниво. Фокус: техника, навика, прогресија без повреди.
-              </div>
-            </div>
-          </div>
-
-          <div class="q">
-            <button type="button">
-              <b>Колку пати неделно се одржуваат тренинзите?</b>
-              <span class="plus" aria-hidden="true"></span>
-            </button>
-            <div class="a">
-              <div class="pad">
-                Најчесто 3–5 дена неделно. Ти кажувам оптимум според целта и распоредот.
-              </div>
-            </div>
-          </div>
-
-          <div class="q">
-            <button type="button">
-              <b>Дали добивам план за исхрана?</b>
-              <span class="plus" aria-hidden="true"></span>
-            </button>
-            <div class="a">
-              <div class="pad">
-                Да. Практичен план (или правила) што реално можеш да го држиш. Без “магични” диети.
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="faq" aria-label="FAQ list">
+        <details>
+          <summary>How do I start?</summary>
+          <p>Message on WhatsApp. Send age, height, weight, goal, and how many days/week you can train. If possible, add a photo.</p>
+        </details>
+        <details>
+          <summary>Do I need a gym?</summary>
+          <p>Gym is best. If you train at home, I’ll build around what you have. Results depend on execution and consistency.</p>
+        </details>
+        <details>
+          <summary>Is this for beginners?</summary>
+          <p>Yes. Beginners progress fast if they follow the plan. Advanced athletes need more precision. Both require discipline.</p>
+        </details>
+        <details>
+          <summary>Will I get a strict diet?</summary>
+          <p>No starvation, no fantasy meal plans. You get targets and structure. If you can’t follow it, it’s useless.</p>
+        </details>
+        <details>
+          <summary>How fast will I see results?</summary>
+          <p>Visible change can happen in weeks, but real transformation is months. Your speed depends on adherence, sleep, and weekly effort.</p>
+        </details>
+        <details>
+          <summary>What does accountability look like?</summary>
+          <p>Check-ins. Data. Adjustments. If you disappear, you lose momentum. The system works only when you show up.</p>
+        </details>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section reveal" id="contact">
-      <div class="inner">
-        <div class="head">
-          <div>
-            <div class="h">Контактирај ме</div>
-            <div class="sub">Најбрзо преку WhatsApp.</div>
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <div class="mini">Start</div>
+          <h2>Stop improvising. Start executing.</h2>
+        </div>
+        <p>WhatsApp is the fastest path. Email exists if you prefer slower communication.</p>
+      </div>
+
+      <div class="contact" aria-label="Contact options">
+        <div class="contact-card">
+          <div class="content">
+            <b style="font-size:18px;">WhatsApp (recommended)</b>
+            <p>Copy/paste this structure: Age / Height / Weight / Goal / Days per week. Add a photo if you can.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo." target="_blank" rel="noopener">Open WhatsApp</a>
+              <a class="btn" href="https://www.instagram.com/d_bojovski/" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn" href="https://www.tiktok.com/@d_bojovski" target="_blank" rel="noopener">TikTok</a>
+            </div>
           </div>
         </div>
 
-        <div class="contact">
-          <a id="waLink" href="#" target="_blank" rel="noopener">
-            <div class="ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M21 12a8.5 8.5 0 0 1-12.8 7.4L3 21l1.7-4.9A8.5 8.5 0 1 1 21 12Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M9 11c1.2 2.3 3.6 3.9 6 4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
-              </svg>
+        <div class="contact-card">
+          <div class="content">
+            <b style="font-size:18px;">Email</b>
+            <p>If you email, include the same info as WhatsApp so you don’t waste time going back and forth.</p>
+            <div class="hero-actions">
+              <a class="btn" href="mailto:darko.bojovski@gmail.com">darko.bojovski@gmail.com</a>
+              <a class="btn" href="#services">Coaching options</a>
             </div>
-            <div>
-              <b>WhatsApp</b>
-              <small id="waSub">Message directly</small>
-            </div>
-          </a>
-
-          <a id="mailLink" href="#">
-            <div class="ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
-                <path d="m4 8 8 6 8-6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div>
-              <b>Email</b>
-              <small id="mailSub">darko.bojovski@gmail.com</small>
-            </div>
-          </a>
-
-          <a id="igLink" href="#" target="_blank" rel="noopener">
-            <div class="ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
-              </svg>
-            </div>
-            <div>
-              <b>Instagram</b>
-              <small id="igSub2">@d_bojovski</small>
-            </div>
-          </a>
-
-          <a id="ttLink" href="#" target="_blank" rel="noopener">
-            <div class="ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M14 3v10.2a3.8 3.8 0 1 1-2-3.4V5.5c2 2.8 4.5 4.3 7 4.5V13c-2.6-.2-4.6-1.2-5-2v6.2a5.8 5.8 0 1 1-2-4.4V3h2Z" fill="rgba(255,255,255,.88)"/>
-              </svg>
-            </div>
-            <div>
-              <b>TikTok</b>
-              <small id="ttSub">@d_bojovski</small>
-            </div>
-          </a>
-        </div>
-
-        <div class="footer">
-          Champion-level coaching. Clear steps. Real results.
+            <p style="margin-top:14px;"><span class="gold">Note:</span> Pricing can be discussed after evaluation. Cheap coaching attracts unserious clients.</p>
+          </div>
         </div>
       </div>
     </section>
+
+    <footer>
+      <div class="container foot">
+        <div>© <span id="year"></span> Darko Bojovski</div>
+        <div>
+          Created by
+          <a href="https://www.instagram.com/tgekic/" target="_blank" rel="noopener">Teo Gekic</a>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <!-- Floating quick actions -->
-  <div class="fab" id="fab">
-    <div class="fab-actions" aria-label="Quick actions">
-      <a id="fabIg" href="#" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 7h10l1.5 2H20a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1.5L7 7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M12 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
-        </svg>
-      </a>
-      <a id="fabWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M21 12a8.5 8.5 0 0 1-12.8 7.4L3 21l1.7-4.9A8.5 8.5 0 1 1 21 12Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M9 11c1.2 2.3 3.6 3.9 6 4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </a>
-      <a id="fabMail" href="#" aria-label="Email">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
-          <path d="m4 8 8 6 8-6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-inner" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <div class="lb-top">
+        <div class="mini" id="lbTitle">Photo</div>
+        <div class="lb-actions">
+          <button class="lb-btn" id="lbPrev" type="button" aria-label="Previous">←</button>
+          <button class="lb-btn" id="lbNext" type="button" aria-label="Next">→</button>
+          <button class="lb-btn" id="lbClose" type="button" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="lb-img">
+        <img id="lbImg" src="" alt="Expanded photo" />
+      </div>
     </div>
-
-    <button class="fab-main" id="fabMain" aria-label="Open quick actions" aria-expanded="false">
-      <span aria-hidden="true"></span>
-    </button>
   </div>
 
   <script>
-    // Config seeded from your current index.html (name/champion/tagline + social links). :contentReference[oaicite:1]{index=1}
-    const CONFIG = {
-      name: "Darko Bojovski",
-      champLine: "Balkan Overall Juniors Champion",
-      tagline: "Coaching • Plans • Transformations",
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      instagramUrl: "https://www.instagram.com/d_bojovski/",
-      tiktokUrl: "https://www.tiktok.com/@d_bojovski",
+    // Drawer
+const drawer = document.getElementById("drawer");
+const openBtn = document.getElementById("drawerOpen");
+const closeBtn = document.getElementById("drawerClose");
 
-      whatsappUrl: "https://wa.me/38978361319?text=Hey%20Darko%2C%20I%20want%20to%20start%20coaching.%20I%27m%20__%20years%20old%2C%20__%20cm%2C%20__%20kg.%20Goal%3A%20__.%20Days%2Fweek%3A%20__.%20I%20can%20send%20a%20photo.",
-      email: "darko.bojovski@gmail.com",
+function openDrawer(){
+  drawer.classList.add("open");
+  drawer.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer(){
+  drawer.classList.remove("open");
+  drawer.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
 
-      resultsUrl: "https://www.instagram.com/d_bojovski/",
-      igHandle: "@d_bojovski"
-    };
+openBtn?.addEventListener("click", openDrawer);
+closeBtn?.addEventListener("click", closeDrawer);
 
-    // Populate UI
-    document.getElementById("uiName").textContent = CONFIG.name.toUpperCase();
-    document.getElementById("uiChamp").textContent = CONFIG.champLine;
+// close drawer when clicking backdrop
+drawer.addEventListener("click", (e) => {
+  if(e.target === drawer) closeDrawer();
+});
 
-    document.getElementById("name").textContent = CONFIG.name.toUpperCase();
-    document.getElementById("tagline").textContent = CONFIG.tagline;
+// close drawer when clicking any menu link
+drawer.querySelectorAll("a[href^='#']").forEach(a=>{
+  a.addEventListener("click", () => closeDrawer());
+});
 
-    document.getElementById("primaryCta").href = CONFIG.whatsappUrl;
-    document.getElementById("resultsBtn").href = CONFIG.resultsUrl;
+// Lightbox
+const shots = Array.from(document.querySelectorAll(".shot"));
+const lightbox = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+const lbTitle = document.getElementById("lbTitle");
+const lbClose = document.getElementById("lbClose");
+const lbPrev = document.getElementById("lbPrev");
+const lbNext = document.getElementById("lbNext");
 
-    const igSubEls = [document.getElementById("igSub"), document.getElementById("igSub2")].filter(Boolean);
-    igSubEls.forEach(el => el.textContent = CONFIG.igHandle);
+let currentIndex = 0;
 
-    document.getElementById("igBtn").href = CONFIG.instagramUrl;
-    document.getElementById("igLink").href = CONFIG.instagramUrl;
-    document.getElementById("ttLink").href = CONFIG.tiktokUrl;
+function setLightbox(index){
+  currentIndex = (index + shots.length) % shots.length;
+  const el = shots[currentIndex];
+  const src = el.getAttribute("data-src");
+  const title = el.getAttribute("data-title") || "Photo";
+  lbImg.src = src;
+  lbTitle.textContent = title;
+}
 
-    document.getElementById("waLink").href = CONFIG.whatsappUrl;
-    document.getElementById("waSub").textContent = "Message directly";
+function openLightbox(index){
+  setLightbox(index);
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
 
-    const mailLink = document.getElementById("mailLink");
-    document.getElementById("mailSub").textContent = CONFIG.email;
-    mailLink.href = "mailto:" + CONFIG.email;
+function closeLightbox(){
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+  // avoid keeping big image in memory on mobile
+  setTimeout(()=>{ if(!lightbox.classList.contains("open")) lbImg.src = ""; }, 120);
+}
 
-    // Menu links
-    document.getElementById("menuWhatsApp").href = CONFIG.whatsappUrl;
-
-    // FAB links
-    document.getElementById("fabIg").href = CONFIG.instagramUrl;
-    document.getElementById("fabWa").href = CONFIG.whatsappUrl;
-    document.getElementById("fabMail").href = "mailto:" + CONFIG.email;
-
-    // Mobile menu behavior
-    const menu = document.getElementById("menu");
-    const hamb = document.getElementById("hamb");
-    const menuClose = document.getElementById("menuClose");
-    const menuBackdrop = document.getElementById("menuBackdrop");
-
-    const openMenu = () => {
-      menu.classList.add("open");
-      menu.setAttribute("aria-hidden", "false");
-      hamb.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    };
-    const closeMenu = () => {
-      menu.classList.remove("open");
-      menu.setAttribute("aria-hidden", "true");
-      hamb.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    };
-
-    hamb.addEventListener("click", openMenu);
-    menuClose.addEventListener("click", closeMenu);
-    menuBackdrop.addEventListener("click", closeMenu);
-    menu.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (a) closeMenu();
-    });
-
-    // Smooth scrolling for hash links
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const id = a.getAttribute("href");
-      if (!id || id === "#") return;
-      const el = document.querySelector(id);
-      if (!el) return;
+shots.forEach((el, idx)=>{
+  el.addEventListener("click", ()=> openLightbox(idx));
+  el.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" || e.key === " "){
       e.preventDefault();
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+      openLightbox(idx);
+    }
+  });
+  // accessibility: make focusable
+  el.tabIndex = 0;
+  el.setAttribute("role","button");
+  el.setAttribute("aria-label", "Open photo");
+});
 
-    // FAQ accordion
-    document.getElementById("faqList").addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      const item = btn.closest(".q");
-      const isOpen = item.classList.contains("open");
-      [...document.querySelectorAll(".q.open")].forEach(x => x.classList.remove("open"));
-      if (!isOpen) item.classList.add("open");
-    });
+lbClose.addEventListener("click", closeLightbox);
+lbPrev.addEventListener("click", ()=> setLightbox(currentIndex - 1));
+lbNext.addEventListener("click", ()=> setLightbox(currentIndex + 1));
 
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(ent => {
-        if (ent.isIntersecting) ent.target.classList.add("in");
-      });
-    }, { threshold: 0.12 });
+// close on backdrop click
+lightbox.addEventListener("click", (e)=>{
+  if(e.target === lightbox) closeLightbox();
+});
 
-    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+// keyboard controls
+document.addEventListener("keydown", (e)=>{
+  const lbOpen = lightbox.classList.contains("open");
+  const drOpen = drawer.classList.contains("open");
 
-    // Animated counters
-    const animateCount = (el) => {
-      const to = Number(el.getAttribute("data-count") || "0");
-      const suffix = el.getAttribute("data-suffix") || "";
-      const dur = 850;
-      const start = performance.now();
+  if(e.key === "Escape"){
+    if(lbOpen) closeLightbox();
+    if(drOpen) closeDrawer();
+  }
 
-      const tick = (t) => {
-        const p = Math.min(1, (t - start) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const v = Math.round(eased * to);
-        el.textContent = String(v) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-
-    const statIO = new IntersectionObserver((entries) => {
-      entries.forEach(ent => {
-        if (!ent.isIntersecting) return;
-        const el = ent.target;
-        if (el.dataset.done === "1") return;
-        el.dataset.done = "1";
-        animateCount(el);
-      });
-    }, { threshold: 0.35 });
-
-    document.querySelectorAll(".n[data-count]").forEach(el => statIO.observe(el));
-
-    // FAB
-    const fab = document.getElementById("fab");
-    const fabMain = document.getElementById("fabMain");
-    const toggleFab = () => {
-      const open = fab.classList.toggle("open");
-      fabMain.setAttribute("aria-expanded", open ? "true" : "false");
-    };
-    fabMain.addEventListener("click", toggleFab);
-    document.addEventListener("click", (e) => {
-      if (!fab.classList.contains("open")) return;
-      if (e.target.closest("#fab")) return;
-      fab.classList.remove("open");
-      fabMain.setAttribute("aria-expanded", "false");
-    });
-  </script>
+  if(lbOpen){
+    if(e.key === "ArrowLeft") setLightbox(currentIndex - 1);
+    if(e.key === "ArrowRight") setLightbox(currentIndex + 1);
+  }
+});
+</script>
 </body>
 </html>
